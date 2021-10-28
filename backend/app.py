@@ -102,8 +102,7 @@ def today():
     return {"message": "today's played tracks", "tracks": tracks_of_today}
 
 
-# @app.schedule(Cron("1/2", "8-10", "?", "*", "MON-FRI", "*"))
-@app.schedule(Cron("1/2", "*", "?", "*", "MON-FRI", "*"))
+@app.schedule(Cron("1/2", "8-10", "?", "*", "MON-FRI", "*"))
 def use_ffmpeg(event):
     for retries in range(1, max_retries + 1):
         # datetime object for later
