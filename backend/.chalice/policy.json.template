@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem ",
+        "dynamodb:GetItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:DeleteItem"
+      ],
+      "Resource": "arn:aws:dynamodb:{REGION}:{IAM_ID}:table/DoYouDatabase*"
+    }
+  ]
+}
