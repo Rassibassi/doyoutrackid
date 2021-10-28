@@ -43,7 +43,7 @@ command = shlex.split(ffmpeg_command.format(STREAM_URL, record_time))
 # chalice app
 app = Chalice(app_name="doyoutrackid")
 app.log.setLevel(logging.DEBUG)
-cors_config = True # CORSConfig(allow_origin=FRONTEND_ORIGIN)
+cors_config = CORSConfig(allow_origin=FRONTEND_ORIGIN)
 
 # dynamo db
 dynamodb = boto3.resource("dynamodb")
