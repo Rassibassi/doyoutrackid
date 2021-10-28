@@ -1,0 +1,5 @@
+chalice==1.26.0
+isort==5.9.3
+black==21.9b0
+flake8==3.9.2
+-r backend/requirements.txt
