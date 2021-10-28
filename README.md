@@ -1,6 +1,6 @@
 # Do You Track ID app
 
-Tracking the songs played on the do you radio show.
+IDing the songs played on the do you radio show.
 
 https://doyou.world/
 
