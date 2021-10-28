@@ -63,7 +63,7 @@ const App = () => {
                         <br />
                         Give some feedback, email me here:
                         <br />
-                        <a href={`mailto:${process.env.REACT_APP_EMAIL}subject=DoYouTrackID`}>
+                        <a href={`mailto:${process.env.REACT_APP_EMAIL}?subject=DoYouTrackID`}>
                           {process.env.REACT_APP_EMAIL}
                         </a>
                       </small>

@@ -1,11 +1,11 @@
 import json
+import logging
 import os
 import re
 import shlex
 import subprocess
 from datetime import date, datetime
 from functools import partial
-import logging
 
 import boto3
 import pytz
@@ -36,7 +36,7 @@ AUDD_ERROR = {
 # variables for recording
 record_time = 20
 bps = 16000
-max_retries = 1
+max_retries = 5
 ffmpeg_command = "/opt/bin/ffmpeg -i {} -f mp3 -t {} -"
 command = shlex.split(ffmpeg_command.format(STREAM_URL, record_time))
 
@@ -58,6 +58,7 @@ datetime_format = "%Y-%m-%d %H:%M:%S%z"
 # keep spaces
 clean_string = partial(re.sub, re.compile(r"\([^)]*\)|\[[^)]*\]|[^a-zA-Z0-9\s]"), "")
 
+
 # helper functions
 def as_london(datetime_obj):
     return datetime_obj.astimezone(pytz.timezone("Europe/London"))
@@ -71,7 +72,7 @@ def get_tracks_of(date_obj):
     end_of_day = datetime.combine(date_obj, datetime.max.time())
     end_of_day = as_london(end_of_day)
 
-    # scan database table for entries of date_obj 
+    # scan database table for entries of date_obj
     fe = Key("played_datetime").between(
         start_of_day.strftime(datetime_format), end_of_day.strftime(datetime_format)
     )
@@ -145,7 +146,9 @@ def use_ffmpeg(event):
                 latest_track = next(iter(tracks_of_today), None)
                 new_track = audd_response["result"]
 
-                if latest_track is not None and check_duplicate(new_track, latest_track):
+                if latest_track is not None and check_duplicate(
+                    new_track, latest_track
+                ):
                     return {"message": "this was a duplicate"}
                 else:
                     # write new track into database
@@ -154,12 +157,11 @@ def use_ffmpeg(event):
                     db_put_response = table.put_item(Item=item)
                     return {
                         "message": "added new track",
-                        "item": new_track,
+                        "item": item,
                         "database": db_put_response,
                     }
 
             else:
                 {"message": "could not find any id"}
-                    
 
     return {"message": f"tried it {max_retries} times"}
