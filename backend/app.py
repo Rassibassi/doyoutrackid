@@ -14,7 +14,7 @@ from boto3.dynamodb.conditions import Key
 from chalice import Chalice, CORSConfig, Cron
 
 # from ENV vars
-STREAM_URL = os.environ["STREAM_URL_NTS"]
+STREAM_URL = os.environ["STREAM_URL"]
 AUDD_API_KEY = os.environ["AUDD_API_KEY"]
 AUDD_URL = os.environ["AUDD_URL"]
 FRONTEND_ORIGIN = os.environ["FRONTEND_ORIGIN"]
