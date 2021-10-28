@@ -9,7 +9,7 @@ const App = () => {
 
   const getTrackIds = (timeout_mseconds) => {
     setIsLoading(true);
-    axios.get(`${process.env.REACT_APP_API_SERVICE_URL}/api/today`)
+    axios.get(`${process.env.REACT_APP_API_SERVICE_URL}/today`)
     .then((res) => {
       const tracks = res.data.tracks;
 
@@ -41,7 +41,7 @@ const App = () => {
           <div className="column is-half">
             <div className="box">
               <article className="media">
-                <div class="media-left">
+                <div className="media-left">
                   <figure className="image is-128x128">
                     <img alt="Banana" src={process.env.REACT_APP_BANANA_URL} />
                   </figure>
