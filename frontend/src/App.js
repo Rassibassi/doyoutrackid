@@ -72,13 +72,11 @@ const App = () => {
                 </div>
               </article>
             </div>
-            <div>
-              <button
-                className={`button is-link is-fullwidth ${isLoading ? "is-loading" : ""}`}
-                onClick={() => {getTrackIds(1000)}}
-              >Refresh
-              </button>
-            </div>
+            <button
+              className={`button is-link is-fullwidth mb-5 ${isLoading ? "is-loading" : ""}`}
+              onClick={() => {getTrackIds(1000)}}
+            >Refresh
+            </button>
             {tracks.map((track, i) => <Box key={i} {...track} />)}
           </div>
         </div>
