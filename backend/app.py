@@ -36,7 +36,7 @@ AUDD_ERROR = {
 # variables for recording
 record_time = 20
 bps = 16000
-max_retries = 5
+max_retries = 4
 ffmpeg_command = "/opt/bin/ffmpeg -i {} -f mp3 -t {} -"
 command = shlex.split(ffmpeg_command.format(STREAM_URL, record_time))
 
@@ -125,6 +125,8 @@ def use_ffmpeg(event):
             )
             audd_response = json.loads(result.text)
 
+            app.log.debug(f"audd_response: {audd_response}")
+
             # audd error handling
             if audd_response["status"] == "error":
                 error_code = int(audd_response["error"]["error_code"])
@@ -145,6 +147,9 @@ def use_ffmpeg(event):
                 # get latest item from list if any, otherwise None
                 latest_track = next(iter(tracks_of_today), None)
                 new_track = audd_response["result"]
+
+                app.log.debug(f"latest_track: {new_track}")
+                app.log.debug(f"latest_track: {latest_track}")
 
                 if latest_track is not None and check_duplicate(
                     new_track, latest_track
