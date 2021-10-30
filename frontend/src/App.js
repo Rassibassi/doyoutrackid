@@ -31,7 +31,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    getTrackIds(200)
+    getTrackIds(200);
   }, []);
 
   return (
@@ -73,7 +73,7 @@ const App = () => {
               </article>
             </div>
             <button
-              className={`button is-link is-fullwidth mb-5 ${isLoading ? "is-loading" : ""}`}
+              className={`button is-link is-fullwidth mb-5${isLoading ? " is-loading" : ""}`}
               onClick={() => {getTrackIds(1000)}}
             >Refresh
             </button>
@@ -110,7 +110,7 @@ const Box = (props) => {
               <a className="level-item" href={props.song_link} target="_blank" rel="noreferrer">
                 <span className="icon-text">
                   <span className="icon">
-                    <i className="fas fa-home"></i>
+                    <i class="fa-solid fa-link"></i>
                   </span>
                   <span>{props.song_link}</span>
                 </span>
