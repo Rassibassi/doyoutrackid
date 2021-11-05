@@ -138,7 +138,7 @@ def use_ffmpeg(event):
                     app.log.debug(f"audd error, retrying... {retries}/{max_retries}")
                     continue
                 else:
-                    {"message": error_message_short}
+                    return {"message": error_message_short}
 
             elif audd_response["status"] == "success" and audd_response["result"]:
                 # get latest track from database to check if duplicate
@@ -167,6 +167,6 @@ def use_ffmpeg(event):
                     }
 
             else:
-                {"message": "could not find any id"}
+                return {"message": "could not find any id"}
 
     return {"message": f"tried it {max_retries} times"}
