@@ -1,3 +1,4 @@
+import csv
 import json
 import logging
 import os
@@ -6,12 +7,13 @@ import shlex
 import subprocess
 from datetime import date, datetime
 from functools import partial
+from io import StringIO
 
 import boto3
 import pytz
 import requests
 from boto3.dynamodb.conditions import Key
-from chalice import Chalice, CORSConfig, Cron
+from chalice import Chalice, CORSConfig, Cron, Response
 
 # from ENV vars
 STREAM_URL = os.environ["STREAM_URL"]
@@ -65,12 +67,15 @@ def as_london(datetime_obj):
     return datetime_obj.astimezone(pytz.timezone("Europe/London"))
 
 
-def get_tracks_of(date_obj, reverse=True):
+def get_tracks_of(start_date_obj, end_date_obj=None, reverse=True):
+    if end_date_obj is None:
+        end_date_obj = start_date_obj
+
     # get datetime objects from start and end of date_obj
-    start_of_day = datetime.combine(date_obj, datetime.min.time())
+    start_of_day = datetime.combine(start_date_obj, datetime.min.time())
     start_of_day = as_london(start_of_day)
 
-    end_of_day = datetime.combine(date_obj, datetime.max.time())
+    end_of_day = datetime.combine(end_date_obj, datetime.max.time())
     end_of_day = as_london(end_of_day)
 
     # scan database table for entries of date_obj
@@ -111,6 +116,49 @@ def today():
     tracks_of_today = get_tracks_of(today)
 
     return {"message": "today's played tracks", "tracks": tracks_of_today}
+
+
+@app.route(
+    "/csv/{sday}/{smonth}/{syear}/{eday}/{emonth}/{eyear}",
+    methods=["GET"],
+    cors=cors_config,
+)
+def as_csv(sday, smonth, syear, eday, emonth, eyear):
+    start_day_string = f"{syear}-{smonth}-{sday}"
+    end_day_string = f"{eyear}-{emonth}-{eday}"
+
+    start_requested_day = datetime.strptime(start_day_string, date_format)
+    end_requested_day = datetime.strptime(end_day_string, date_format)
+
+    # adds leading zeros to day and month
+    start_day_string = start_requested_day.strftime(date_format)
+    end_day_string = end_requested_day.strftime(date_format)
+    filename = f"{start_day_string}_{end_day_string}.csv"
+
+    headers = {
+        "Content-Type": "text/csv",
+        "Content-Disposition": f"attachment; filename={filename}",
+    }
+
+    tracks = get_tracks_of(
+        start_requested_day, end_date_obj=end_requested_day, reverse=False
+    )
+
+    fieldnames = set()
+    for track in tracks:
+        fieldnames.update(list(track.keys()))
+    fieldnames = list(fieldnames)
+
+    string_io = StringIO()
+    if isinstance(tracks, list) and len(tracks) > 0:
+        writer = csv.DictWriter(string_io, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(tracks)
+        csv_string = string_io.getvalue()
+    else:
+        csv_string = ""
+
+    return Response(body=csv_string, headers=headers)
 
 
 @app.schedule(Cron("1/2", "9-11", "?", "*", "MON-FRI", "*"))
