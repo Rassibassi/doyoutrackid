@@ -50,7 +50,7 @@ dynamodb = boto3.resource("dynamodb")
 table = dynamodb.Table(DYNAMODB_TABLE)
 
 # misc
-time_format = "%H:%M"
+date_format = "%Y-%m-%d"
 datetime_format = "%Y-%m-%d %H:%M:%S%z"
 
 # regex sub partial to remove everything that
@@ -65,7 +65,7 @@ def as_london(datetime_obj):
     return datetime_obj.astimezone(pytz.timezone("Europe/London"))
 
 
-def get_tracks_of(date_obj):
+def get_tracks_of(date_obj, reverse=True):
     # get datetime objects from start and end of date_obj
     start_of_day = datetime.combine(date_obj, datetime.min.time())
     start_of_day = as_london(start_of_day)
@@ -81,7 +81,7 @@ def get_tracks_of(date_obj):
 
     # sort by datetime
     db_response["Items"].sort(
-        reverse=True,
+        reverse=reverse,
         key=lambda item: datetime.strptime(item["played_datetime"], datetime_format),
     )
 
@@ -96,6 +96,15 @@ def check_duplicate(track_a, track_b, compare_keys=["artist", "title"]):
 
 
 # lambda functions
+@app.route("/archive/{day}/{month}/{year}", methods=["GET"], cors=cors_config)
+def archive(day, month, year):
+    day_string = f"{year}-{month}-{day}"
+    requested_day = datetime.strptime(day_string, date_format)
+    tracks_of_requested_day = get_tracks_of(requested_day, reverse=False)
+
+    return {"message": f"{day_string} played tracks", "tracks": tracks_of_requested_day}
+
+
 @app.route("/today", methods=["GET"], cors=cors_config)
 def today():
     today = date.today()
