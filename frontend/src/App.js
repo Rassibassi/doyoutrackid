@@ -24,14 +24,41 @@ const App = () => {
 }
 
 const Navigation = () => {
+  const [toggle, setToggle] = useState(false);
+  const untoggle = () => {
+    setToggle(false);
+  }
   return (
     <nav className="navbar is-link">
-      <div className="navbar-menu">
+      <div className="navbar-brand">
+        <button
+          onClick={() => {
+            setToggle(!toggle)
+          }}
+          className="navbar-burger"
+          data-target="navMenu"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div id="navMenu" className={`navbar-menu${toggle ? ' is-active' : ''}`}>
         <div className="navbar-start">
-          <Link className="navbar-item" to='/'>
+          <Link
+            onClick={untoggle}
+            className="navbar-item"
+            to='/'
+          >
             Live
           </Link>
-          <Link className="navbar-item" to='/archive'>
+          <Link
+            onClick={untoggle}
+            className="navbar-item"
+            to='/archive'
+          >
             Archive
           </Link>
         </div>
