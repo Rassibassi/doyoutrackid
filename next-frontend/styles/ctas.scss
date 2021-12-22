@@ -1,0 +1,32 @@
+@mixin button-reset {
+  appearance: none;
+  background: transparent;
+  border-style: none;
+  cursor: pointer;
+  font-weight: normal;
+  outline: 0 none transparent;
+  padding: 0;
+  padding-inline-end: 0;
+  padding-inline-start: 0;
+  user-select: none;
+  white-space: nowrap;
+  width: auto;
+
+  &:hover {
+    background: transparent;
+  }
+
+  &:active {
+    background: transparent;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+@mixin anchor-reset {
+  appearance: none;
+  outline: 0 none transparent;
+  text-decoration: none;
+}
