@@ -1,0 +1,36 @@
+@use "styles/typography";
+@use "styles/ctas";
+
+.button {
+  @include ctas.button-reset;
+}
+
+.anchor {
+  @include ctas.anchor-reset;
+
+  align-items: center;
+  display: inline-flex;
+}
+
+.root {
+  @include typography.button;
+
+  border: 1px solid black;
+  border-radius: 30px;
+  color: black;
+  height: 26px;
+  padding: 0 15px;
+
+  &:hover {
+    background-color: var(--yellow-01);
+  }
+
+  &:active {
+    background-color: black;
+    color: white;
+  }
+
+  &:focus {
+    box-shadow: 0 0 2px 1px var(--blue-01);
+  }
+}
