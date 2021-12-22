@@ -1,0 +1,34 @@
+@use "styles/typography";
+@use "styles/ctas";
+
+.root {
+  @include ctas.anchor-reset;
+  @include typography.heading-3;
+
+  color: black;
+  padding: 7px 0;
+  position: relative;
+
+  &::after {
+    background-color: black;
+    bottom: 0;
+    content: "";
+    display: inline-block;
+    height: 1px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  &:hover,
+  &:focus {
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    color: var(--blue-01);
+  }
+}
