@@ -1,0 +1,36 @@
+@use "styles/breakpoints";
+
+.container {
+  display: grid;
+  gap: var(--body-padding);
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+
+  /* mobile viewport bug fix */
+  min-height: stretch;
+
+  @include breakpoints.sm-up {
+    height: 100vh;
+  }
+}
+
+.header {
+  grid-area: header;
+}
+
+.navbar {
+  padding: var(--body-padding);
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  align-items: flex-end;
+  display: flex;
+  grid-area: footer;
+  padding: var(--body-padding);
+}
