@@ -1,10 +1,16 @@
 import type { AppProps } from "next/app";
 import "normalize.css";
-import "bulma/css/bulma.min.css";
+
+import Layout from "../components/Layout/Layout";
+
 import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 }
 
 export default MyApp;
