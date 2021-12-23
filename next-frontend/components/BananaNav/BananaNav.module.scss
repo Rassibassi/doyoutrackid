@@ -1,0 +1,147 @@
+@use "styles/accessibility";
+@use "styles/typography";
+
+@keyframes rotate {
+  50% {
+    transform: rotate(var(--rotate-ani)) translate3d(var(--translate), 0, 0);
+  }
+}
+
+.root {
+  opacity: 0;
+  overflow: hidden;
+  padding-bottom: 15%;
+  padding-left: 26%;
+  transition: opacity 1s ease-in-out;
+
+  &.hasLoaded {
+    opacity: 1;
+  }
+}
+
+.nav {
+  display: inline-block;
+  position: relative;
+  transform: translateX(-31%);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  --clip-path:
+    polygon(
+      17% 2%,
+      22% 19%,
+      29% 37%,
+      38% 51%,
+      49% 61%,
+      63% 70%,
+      79% 75%,
+      96% 79%,
+      100% 82%,
+      100% 85%,
+      100% 88%,
+      97% 94%,
+      89% 99%,
+      79% 100%,
+      63% 100%,
+      51% 100%,
+      37% 96%,
+      20% 85%,
+      6% 69%,
+      1% 54%,
+      0% 41%,
+      0% 28%,
+      0% 21%,
+      2% 12%,
+      4% 5%,
+      8% 0%,
+      12% 0%,
+      16% 0%
+    );
+
+  animation: rotate var(--duration) ease-in-out infinite forwards;
+  background-color: transparent;
+  clip-path: var(--clip-path);
+  display: inline-block;
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  transform: rotate(var(--rotate)) translate3d(var(--translate), 0, 0);
+  transform-origin: calc(var(--transform-origin) + var(--translate)) 0;
+  transition: transform 0.5s;
+  user-select: none;
+
+  &:hover,
+  &:focus {
+    background-color: var(--blue-01);
+  }
+
+  &:nth-child(1) {
+    --transform-origin: 10%;
+    --translate: 50%;
+    --rotate: 50deg;
+    --rotate-ani: 54deg;
+    --duration: 4s;
+
+    position: relative;
+    z-index: 3;
+  }
+
+  &:nth-child(2) {
+    --transform-origin: 10%;
+    --translate: 50%;
+    --rotate: 25deg;
+    --rotate-ani: 22deg;
+    --duration: 3s;
+
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+  }
+
+  &:nth-child(3) {
+    --transform-origin: 10%;
+    --translate: 50%;
+    --rotate: 0deg;
+    --rotate-ani: 3deg;
+    --duration: 4s;
+
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+.anchor {
+  @include typography.heading-3;
+
+  color: black;
+  left: 29%;
+  padding: 20px;
+  pointer-events: all;
+  position: absolute;
+  top: 64%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  &::after {
+    bottom: -3px;
+    content: "";
+    display: block;
+    height: 1px;
+    position: relative;
+    width: 100%;
+  }
+
+  &:hover::after {
+    background-color: black;
+  }
+}
