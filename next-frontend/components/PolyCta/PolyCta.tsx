@@ -1,5 +1,8 @@
 import { forwardRef, LegacyRef } from "react";
 
+// Copied from / inspired by
+// https://dev.to/frehner/polymorphic-button-component-in-typescript-c28
+
 export enum EPolyAs {
   button = "button",
   anchor = "anchor",

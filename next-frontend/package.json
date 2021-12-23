@@ -1,6 +1,9 @@
 {
   "name": "next-frontend",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
