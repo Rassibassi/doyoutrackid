@@ -7,6 +7,7 @@
     "header"
     "main"
     "footer";
+  grid-template-rows: 55px auto 55px;
 
   /* mobile viewport bug fix */
   min-height: stretch;
@@ -17,15 +18,19 @@
 }
 
 .header {
+  align-items: center;
+  display: flex;
   grid-area: header;
 }
 
 .navbar {
-  padding: var(--body-padding);
+  padding: 0 var(--body-padding);
+  width: 100%;
 }
 
 .main {
   grid-area: main;
+  place-self: center stretch;
 }
 
 .footer {
