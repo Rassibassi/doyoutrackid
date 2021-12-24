@@ -4,7 +4,9 @@
 }
 
 .bananaNav {
-  padding-bottom: 20%;
-  padding-left: 33%;
+  margin: 0 auto;
+  max-width: 780px;
+  padding-bottom: min(100px, 20%);
+  padding-left: min(200px, 30%);
   width: 100%;
 }
