@@ -4,13 +4,59 @@
   padding: var(--body-padding);
 }
 
+.bananas {
+  max-width: 250px;
+  padding-bottom: min(31px, 6%);
+  padding-left: min(57px, 11%);
+  padding-right: min(32px, 7%);
+  position: fixed;
+  top: min(200px, 50vw);
+  transform:
+    translate(-3%, -50%)
+    rotate(
+      330deg
+    );
+  width: 50%;
+
+  @include breakpoints.sm-up {
+    left: 5vw;
+  }
+
+  @include breakpoints.md-up {
+    left: 10vw;
+  }
+}
+
+.banana {
+  max-width: 200px;
+  position: fixed;
+  right: 30px;
+  top: min(350px, 100vw);
+  transform:
+    translateY(-50%)
+    rotate(
+      283deg
+    );
+  width: 40%;
+
+  @include breakpoints.sm-up {
+    right: 10vw;
+  }
+
+  @include breakpoints.md-up {
+    right: 20vw;
+  }
+}
+
 .list {
+  --margin-top: min(400px, 115vw);
+
   list-style: none;
-  margin: 20px 0;
+  margin-top: var(--margin-top);
   padding: 0;
 
   @include breakpoints.sm-up {
-    margin: 100px 20% 0;
+    margin: var(--margin-top) 20% 0;
   }
 }
 

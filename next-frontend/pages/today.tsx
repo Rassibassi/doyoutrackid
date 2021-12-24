@@ -3,6 +3,8 @@ import moment from "moment";
 import type { NextPage } from "next";
 import { useEffect, useRef, useState } from "react";
 
+import Bananas from "../components/Bananas/Bananas";
+import DateBanana from "../components/DateBanana/DateBanana";
 import Track from "../components/Track/Track";
 import { ITrack, ITrackResponse } from "../constants/tracks";
 import styles from "../styles/today.module.scss";
@@ -11,6 +13,8 @@ const Today: NextPage = () => {
   const [tracks, setTracks] = useState<ITrack[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+
+  const today = new Date();
 
   const getTrackIds = (timeoutMs: number) => {
     setIsLoading(true);
@@ -51,14 +55,7 @@ const Today: NextPage = () => {
 
   return (
     <section className={rootStyles.join(" ")}>
-      {/* <button
-        className={isLoading ? " is-loading" : ""}
-        onClick={() => {
-          getTrackIds(1000);
-        }}
-      >
-        Refresh
-      </button> */}
+      <Bananas className={styles.bananas} />
       <ul className={styles.list}>
         {tracks.map(
           (
@@ -87,6 +84,11 @@ const Today: NextPage = () => {
           )
         )}
       </ul>
+      <DateBanana
+        className={styles.banana}
+        date={moment(today).format("DD/MM/YYYY")}
+        day={moment(today).format("ddd")}
+      />
     </section>
   );
 };
