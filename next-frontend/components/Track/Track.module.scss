@@ -1,0 +1,116 @@
+@use "styles/breakpoints";
+@use "styles/accessibility";
+@use "styles/typography";
+
+@keyframes rotate {
+  50% { transform: rotateY(180deg); }
+}
+
+.root {
+  perspective: 500px;
+  position: relative;
+
+  @include breakpoints.sm-up {
+    padding-left: 80px;
+  }
+}
+
+.time {
+  @include typography.heading-3;
+
+  @include breakpoints.sm-up {
+    left: 8px;
+    position: absolute;
+    top: 26px;
+  }
+}
+
+.title {
+  @include typography.heading-1;
+
+  color: black;
+  margin-top: 16px;
+
+  @include breakpoints.sm-up {
+    margin-top: 0;
+  }
+}
+
+.artist {
+  @include typography.heading-2;
+
+  color: black;
+  margin-top: 4px;
+}
+
+.album,
+.label,
+.releaseDate {
+  @include typography.heading-3;
+
+  color: var(--grey-03);
+}
+
+.album {
+  margin-top: 24px;
+}
+
+.label {
+  margin-top: 16px;
+}
+
+.releaseDate {
+  margin-top: 8px;
+}
+
+.value {
+  color: black;
+}
+
+.link {
+  background: transparent;
+  border: 2px solid transparent;
+  clip-path:
+    polygon(
+      8% 16%,
+      25% 4%,
+      49% 0%,
+      78% 2%,
+      90% 16%,
+      100% 31%,
+      100% 66%,
+      90% 86%,
+      69% 100%,
+      42% 100%,
+      20% 94%,
+      4% 75%,
+      0% 53%,
+      0% 31%
+    );
+  display: inline-block;
+  font-size: 0;
+  margin-top: 24px;
+  position: relative;
+
+  @include breakpoints.sm-up {
+    margin-top: 32px;
+  }
+}
+
+.linkText {
+  // @include accessibility.screen-reader-only;
+  @include typography.heading-3;
+
+  background-color: white;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sticker {
+  .link:hover &,
+  .link:focus & {
+    animation: rotate 2s linear infinite;
+  }
+}
