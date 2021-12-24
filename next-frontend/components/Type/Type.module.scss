@@ -1,0 +1,17 @@
+@use "styles/typography";
+
+.heading1 {
+  @include typography.heading-1;
+}
+
+.heading2 {
+  @include typography.heading-2;
+}
+
+.heading3 {
+  @include typography.heading-3;
+}
+
+.button {
+  @include typography.button;
+}

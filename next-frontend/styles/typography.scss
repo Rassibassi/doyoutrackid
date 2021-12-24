@@ -1,0 +1,23 @@
+@mixin heading-1 {
+  font: var(--heading-1-font);
+  letter-spacing: var(--heading-1-letter-spacing);
+  margin: 0;
+  text-transform: var(--heading-1-transform);
+}
+
+@mixin heading-2 {
+  font: var(--heading-2-font);
+  letter-spacing: var(--heading-2-letter-spacing);
+  margin: 0;
+  text-transform: var(--heading-2-transform);
+}
+
+@mixin heading-3 {
+  font: var(--heading-3-font);
+  margin: 0;
+}
+
+@mixin button {
+  font: var(--button-font);
+  margin: 0;
+}
