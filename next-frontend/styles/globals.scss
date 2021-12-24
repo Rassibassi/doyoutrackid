@@ -24,8 +24,39 @@
     --heading-2-font: 400 35px/40px var(--font-family);
   }
 
-    --heading-3-font: 400 16px/18px var(--font-family);
+  --heading-3-font: 400 16px/18px var(--font-family);
   --heading-4-font: 400 12px/14px var(--font-family);
+  --short-banana-clip-path:
+    polygon(
+      17% 2%,
+      22% 19%,
+      29% 37%,
+      38% 51%,
+      49% 61%,
+      63% 70%,
+      79% 75%,
+      96% 79%,
+      100% 82%,
+      100% 85%,
+      100% 88%,
+      97% 94%,
+      89% 99%,
+      79% 100%,
+      63% 100%,
+      51% 100%,
+      37% 96%,
+      20% 85%,
+      6% 69%,
+      1% 54%,
+      0% 41%,
+      0% 28%,
+      0% 21%,
+      2% 12%,
+      4% 5%,
+      8% 0%,
+      12% 0%,
+      16% 0%
+    );
 }
 
 html,
