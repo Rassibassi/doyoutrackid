@@ -29,7 +29,10 @@
   @include typography.heading-1;
 
   color: black;
+  hyphens: auto;
   margin-top: 16px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 
   @include breakpoints.sm-up {
     margin-top: 0;
