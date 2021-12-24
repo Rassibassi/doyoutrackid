@@ -27,7 +27,7 @@ const Navigation = () => {
         <div className="navbar-start">
           <Link href="/">
             <a className="navbar-item" onClick={untoggle}>
-              Live
+              Today
             </a>
           </Link>
           <Link href="/archive">

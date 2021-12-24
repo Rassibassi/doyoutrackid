@@ -21,8 +21,8 @@ const Navbar = ({ className }: INavbarProps) => {
         </a>
       </Link>
       <nav className={styles.nav}>
-        <Link href="/live" passHref>
-          <NavItem>Live</NavItem>
+        <Link href="/today" passHref>
+          <NavItem>Today</NavItem>
         </Link>
         <Link href="/archive" passHref>
           <NavItem>Archive</NavItem>

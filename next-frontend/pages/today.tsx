@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 
 import Track from "../components/Track/Track";
 import { ITrack, ITrackResponse } from "../constants/tracks";
-import styles from "../styles/live.module.scss";
+import styles from "../styles/today.module.scss";
 
-const Live: NextPage = () => {
+const Today: NextPage = () => {
   const [tracks, setTracks] = useState<ITrack[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
@@ -91,4 +91,4 @@ const Live: NextPage = () => {
   );
 };
 
-export default Live;
+export default Today;

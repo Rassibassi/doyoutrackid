@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof NavItem>;
 
 const Template: ComponentStory<typeof NavItem> = (args) => (
-  <NavItem {...args}>Live</NavItem>
+  <NavItem {...args}>Today</NavItem>
 );
 
 export const Default = Template.bind({});

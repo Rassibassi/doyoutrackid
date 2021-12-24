@@ -19,8 +19,8 @@ const LINKS = [
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8uJz9PwAG0AKg4NkmbAAAAABJRU5ErkJggg==",
   },
   {
-    href: "/live",
-    label: "Live",
+    href: "/today",
+    label: "Today",
     src: "v1640127156/doyoutrackid/banana_short_l5wtkg.png",
     width: 472,
     height: 528,
