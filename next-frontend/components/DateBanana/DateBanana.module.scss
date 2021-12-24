@@ -1,0 +1,49 @@
+@use "styles/typography";
+
+.root {
+  max-width: 472px;
+  opacity: 0;
+  position: relative;
+  transition: opacity 1s ease-in-out;
+
+  &.hasLoaded {
+    opacity: 1;
+  }
+}
+
+.day {
+  @include typography.heading-2;
+
+  color: black;
+  left: 80%;
+  position: absolute;
+  top: 65%;
+  transform:
+    translate(-50%, -50%)
+    rotate(
+      15deg
+    );
+}
+
+.date {
+  @include typography.heading-2;
+
+  color: black;
+  left: 34%;
+  position: absolute;
+  top: 65%;
+  transform:
+    translate(-50%, -50%)
+    rotate(
+      45deg
+    );
+}
+
+.banana {
+  background-color: transparent;
+  clip-path: var(--short-banana-clip-path);
+  display: inline-block;
+  font-size: 0;
+  pointer-events: none;
+  user-select: none;
+}
