@@ -101,7 +101,6 @@
 }
 
 .linkText {
-  // @include accessibility.screen-reader-only;
   @include typography.heading-3;
 
   background-color: white;

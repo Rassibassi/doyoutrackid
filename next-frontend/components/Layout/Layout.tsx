@@ -19,7 +19,7 @@ const Layout: NextPage = ({ children }) => {
       <main className={styles.main}>{children}</main>
 
       <footer className={styles.footer}>
-        <p>Erin Rimmer X jackhkmatthews</p>
+        <p>Rassibassi X Erin Rimmer X jackhkmatthews</p>
       </footer>
     </div>
   );
