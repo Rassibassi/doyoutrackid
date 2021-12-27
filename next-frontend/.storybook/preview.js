@@ -1,4 +1,3 @@
-import "bulma/css/bulma.min.css";
 import "normalize.css";
 import "../styles/globals.scss";
 import * as NextImage from "next/image";
