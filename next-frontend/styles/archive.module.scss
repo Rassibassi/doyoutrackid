@@ -11,56 +11,9 @@
 }
 
 .nav {
-  display: inline-flex;
   grid-area: side;
 }
 
-.year {
-  @include typography.heading-3;
-}
-
-.navList {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.navItem {
-  margin: 8px 0 0;
-  padding: 0;
-
-  &:not(:first-child) {
-    margin: 16px 0 0;
-  }
-}
-
-.pill {
-  width: 100%;
-
-  @include breakpoints.sm-up {
-    min-width: 150px;
-  }
-}
-
-.bananaList {
-  display: grid;
+.bananaDates {
   grid-area: main;
-  grid-template-columns: 1fr;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  @include breakpoints.sm-up {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.bananaListItem {
-  margin: 0;
-  padding: 12%;
-  transform: rotate(var(--rotation));
-}
-
-.bananaLink {
-  display: inline-block;
 }

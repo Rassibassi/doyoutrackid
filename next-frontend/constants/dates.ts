@@ -19,15 +19,15 @@ export const TODAY = new Date();
 
 export const START_ARCHIVE: IArchiveYears = new Map([
   [
-    format(START_DATE, "yyyy"),
+    format(TODAY, "yyyy"),
     {
-      year: format(START_DATE, "yyyy"),
+      year: format(TODAY, "yyyy"),
       months: new Map([
         [
-          format(START_DATE, "LLLL"),
+          format(TODAY, "LLLL"),
           {
-            month: format(START_DATE, "LLLL"),
-            days: [START_DATE],
+            month: format(TODAY, "LLLL"),
+            days: [TODAY],
           },
         ],
       ]),
@@ -36,40 +36,39 @@ export const START_ARCHIVE: IArchiveYears = new Map([
 ]);
 
 export const ARCHIVE: IArchiveYears = eachDayOfInterval({
-  start: add(START_DATE, { days: 1 }),
-  end: TODAY,
-}).reduce((acc, curr) => {
-  const accYear = Array.from(acc.values())[acc.size - 1];
-  const accMonth = Array.from(accYear.months.values())[accYear.months.size - 1];
-  const currYear = format(curr, "yyyy");
-  const currMonthL = Number(format(curr, "L"));
-  const currMonthLLLL = format(curr, "LLLL");
-  const currDay = Number(format(curr, "d"));
-  const firstDayOfMonth = {
-    month: currMonthLLLL,
-    days: isWeekDay(curr) ? [curr] : [],
-  };
-  if (currDay === 1 && currMonthL === 1) {
-    // Is the first of a new year
-    acc.set(currYear, {
-      year: currYear,
-      months: new Map([[currMonthLLLL, firstDayOfMonth]]),
-    });
-  }
-  if (currDay === 1 && currMonthL !== 1) {
-    // Is first day of a new month
-    accYear.months.set(currMonthLLLL, firstDayOfMonth);
-  }
-  if (currDay !== 1 && currMonthL !== 1 && isWeekDay(curr)) {
-    // Is just another day
-    accMonth.days.push(curr);
-  }
-  return acc;
-}, START_ARCHIVE);
-
-export const ARCHIVE_YEARS = Array.from(ARCHIVE.values());
-
-export const ARCHIVE_DAYS = eachDayOfInterval({
   start: START_DATE,
-  end: TODAY,
-}).filter(isWeekDay);
+  end: add(TODAY, { days: -1 }),
+})
+  .reverse()
+  .reduce((acc, curr) => {
+    const accYear = Array.from(acc.values())[acc.size - 1];
+    const accMonth = Array.from(accYear.months.values())[
+      accYear.months.size - 1
+    ];
+    const currYear = format(curr, "yyyy");
+    const currMonthLLLL = format(curr, "LLLL");
+    const firstDayOfMonth = {
+      month: currMonthLLLL,
+      days: isWeekDay(curr) ? [curr] : [],
+    };
+    if (accMonth.month === "December" && currMonthLLLL === "January") {
+      // Is the first of a new year
+      acc.set(currYear, {
+        year: currYear,
+        months: new Map([[currMonthLLLL, firstDayOfMonth]]),
+      });
+    }
+    if (accMonth.month !== currMonthLLLL) {
+      // Is first day of a new month
+      accYear.months.set(currMonthLLLL, firstDayOfMonth);
+    }
+    if (accMonth.month === currMonthLLLL && isWeekDay(curr)) {
+      // Is just another day
+      accMonth.days.unshift(curr);
+    }
+    return acc;
+  }, START_ARCHIVE);
+
+export const ARCHIVE_YEARS = Array.from(ARCHIVE.values()).reverse();
+
+export const TODAY_QUERY = "today";
