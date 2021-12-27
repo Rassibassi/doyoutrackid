@@ -51,16 +51,9 @@
 .list {
   --margin-top: min(400px, 115vw);
 
-  list-style: none;
   margin-top: var(--margin-top);
-  padding: 0;
 
   @include breakpoints.sm-up {
     margin: var(--margin-top) 20% 0;
   }
-}
-
-.listItem {
-  margin: 124px 0 0;
-  padding: 0;
 }

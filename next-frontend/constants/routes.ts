@@ -3,6 +3,7 @@ export enum ROUTE_HREF {
   home = "home",
   today = "today",
   archive = "archive",
+  tracks = "tracks",
 }
 
 export interface IRoute {
@@ -28,8 +29,15 @@ export const ROUTES = new Map<ROUTE_HREF, IRoute>([
   [
     ROUTE_HREF.today,
     {
-      href: "/today",
+      href: "/tracks",
       label: "Today",
+    },
+  ],
+  [
+    ROUTE_HREF.tracks,
+    {
+      href: "/tracks",
+      label: "Tracks",
     },
   ],
   [
