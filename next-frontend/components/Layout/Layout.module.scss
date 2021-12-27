@@ -11,10 +11,7 @@
 
   /* mobile viewport bug fix */
   min-height: stretch;
-
-  @include breakpoints.sm-up {
-    height: 100vh;
-  }
+  min-height: 100vh;
 }
 
 .header {
