@@ -1,0 +1,24 @@
+@use "styles/typography";
+@use "styles/breakpoints";
+
+.root {
+  display: grid;
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include breakpoints.sm-up {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.listItem {
+  margin: 0;
+  padding: 12%;
+  transform: rotate(var(--rotation));
+}
+
+.link {
+  display: inline-block;
+}
