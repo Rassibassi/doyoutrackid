@@ -1,97 +1,121 @@
-import axios from "axios";
-import moment from "moment";
 import { NextPage } from "next";
-import { useEffect, useRef, useState } from "react";
-import { getDay } from "date-fns";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { format } from "date-fns";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-import ButtonInput from "../components/ButtonInput/ButtonInput";
-import Navigation from "../components/Navigation/Navigation";
-import Box from "../components/Box/Box";
+import PillCta from "../components/PillCta/PillCta";
+import { ARCHIVE, ARCHIVE_YEARS, TODAY } from "../constants/dates";
+import DateBanana from "../components/DateBanana/DateBanana";
+import { ROUTE_HREF } from "../constants/routes";
+import { EPolyAs } from "../components/PolyCta/PolyCta";
+import styles from "../styles/archive.module.scss";
+
+const ROTATION_DEGS = [285, 315, 360, 15];
 
 const Archive: NextPage = () => {
-  const [tracks, setTracks] = useState([]);
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [isLoading, setIsLoading] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
+  const {
+    query: { month, year },
+    isReady,
+    replace,
+  } = useRouter();
 
-  const getTrackIds = (dateString: string, timeoutMs: number) => {
-    setIsLoading(true);
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_SERVICE_URL}/archive/${dateString}`)
-      .then((res) => {
-        const tracks = res.data.tracks;
-
-        // some delay to avoid spamming
-        timeoutRef.current = setTimeout(() => {
-          setTracks(tracks);
-          setIsLoading(false);
-          timeoutRef.current = undefined;
-        }, timeoutMs);
-      })
-      .catch((err) => {
-        console.log(err);
-
-        timeoutRef.current = setTimeout(() => {
-          setIsLoading(false);
-          timeoutRef.current = undefined;
-        }, timeoutMs);
-      });
-  };
-
-  const handleDateChange = (date: Date) => {
-    const dateString = moment(date).format("DD/MM/YYYY");
-    getTrackIds(dateString, 1000);
-    setSelectedDate(date);
-  };
+  const isValidQuery = month && year;
+  const monthQuery = String(month);
+  const yearQuery = String(year);
 
   useEffect(() => {
-    const dateString = moment(selectedDate).format("DD/MM/YYYY");
-    getTrackIds(dateString, 200);
-    return () => {
-      if (timeoutRef.current !== undefined) {
-        // handle memory leak
-        clearTimeout(timeoutRef.current);
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const isValidDay = (date: Date) => {
-    const today = new Date();
-    const startDay = new Date(2021, 9, 25);
-    const day = getDay(date);
-
-    const weekday = day !== 0 && day !== 6;
-    const showRunning = date > startDay && date < today;
-
-    return weekday && showRunning;
-  };
+    if (!isValidQuery && isReady) {
+      replace(
+        {
+          pathname: `/${ROUTE_HREF.archive}`,
+          query: {
+            month: format(TODAY, "LLLL"),
+            year: format(TODAY, "yyyy"),
+          },
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
+  }, [isValidQuery, isReady, replace]);
 
   return (
-    <>
-      <Navigation />
-      <section className="section">
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column is-half">
-              <DatePicker
-                dateFormat={"EEEE - dd/MM/yyyy"}
-                closeOnScroll={true}
-                selected={selectedDate}
-                onChange={handleDateChange}
-                filterDate={isValidDay}
-                customInput={<ButtonInput isLoading={isLoading} />}
-              />
-              {tracks.map((track, i) => (
-                <Box key={i} {...track} />
-              ))}
+    <div className={styles.root}>
+      <nav className={styles.nav}>
+        {isValidQuery &&
+          ARCHIVE_YEARS.map((year) => (
+            <div key={year.year}>
+              <h2 className={styles.year}>{year.year}</h2>
+              <ul className={styles.navList}>
+                {Array.from(year.months.values())
+                  .reverse()
+                  .map((month) => (
+                    <li key={month.month} className={styles.navItem}>
+                      <Link
+                        href={{
+                          pathname: `/${ROUTE_HREF.archive}`,
+                          query: {
+                            year: `${year.year}`,
+                            month: `${month.month}`,
+                          },
+                        }}
+                        passHref
+                      >
+                        <PillCta
+                          className={styles.pill}
+                          isActive={
+                            year.year === yearQuery &&
+                            month.month === monthQuery
+                          }
+                          as={EPolyAs.anchor}
+                        >
+                          {month.month}
+                        </PillCta>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
             </div>
-          </div>
-        </div>
-      </section>
-    </>
+          ))}
+      </nav>
+      <ul className={styles.bananaList}>
+        {isValidQuery &&
+          ARCHIVE.get(yearQuery)
+            ?.months.get(monthQuery)
+            ?.days.reverse()
+            .map((day) => (
+              <li
+                key={format(day, "dd-LL-yyyy")}
+                className={styles.bananaListItem}
+                style={
+                  {
+                    "--rotation":
+                      ROTATION_DEGS[
+                        Math.floor(Math.random() * ROTATION_DEGS.length)
+                      ] + "deg",
+                  } as React.CSSProperties
+                }
+              >
+                <Link
+                  href={{
+                    pathname: ROUTE_HREF.tracks,
+                    query: { date: format(day, "yyyy-LL-dd") },
+                  }}
+                  passHref
+                >
+                  <a className={styles.bananaLink}>
+                    <DateBanana
+                      className={styles.banana}
+                      date={format(day, "dd/LL/yyyy")}
+                      day={format(day, "EEE")}
+                    />
+                  </a>
+                </Link>
+              </li>
+            ))}
+      </ul>
+    </div>
   );
 };
 
