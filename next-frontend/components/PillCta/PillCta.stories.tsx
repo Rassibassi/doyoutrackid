@@ -17,6 +17,7 @@ const Template: ComponentStory<typeof PillCta> = (args) => (
 export const Button = Template.bind({});
 Button.args = {
   as: EPolyAs.button,
+  isActive: true,
 };
 
 export const Anchor = Template.bind({});
