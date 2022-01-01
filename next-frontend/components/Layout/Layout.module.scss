@@ -1,5 +1,3 @@
-@use "styles/breakpoints";
-
 .container {
   display: grid;
   gap: var(--body-padding);
@@ -7,11 +5,8 @@
     "header"
     "main"
     "footer";
-  grid-template-rows: 55px auto 55px;
-
-  /* mobile viewport bug fix */
-  min-height: stretch;
-  min-height: 100vh;
+  grid-template-rows: min-content auto min-content;
+  width: 100%;
 }
 
 .header {
@@ -21,7 +16,7 @@
 }
 
 .navbar {
-  padding: 0 var(--body-padding);
+  padding: 10px var(--body-padding);
   width: 100%;
 }
 
@@ -31,8 +26,6 @@
 }
 
 .footer {
-  align-items: flex-end;
-  display: flex;
   grid-area: footer;
-  padding: var(--body-padding);
+  width: 100%;
 }

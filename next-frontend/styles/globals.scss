@@ -11,21 +11,21 @@
   --heading-1-font: 400 50px/57px var(--font-family);
   --heading-1-letter-spacing: -0.02em;
   --heading-1-transform: uppercase;
-
-  @include breakpoints.sm-up {
-    --heading-1-font: 400 70px/80px var(--font-family);
-  }
-
   --heading-2-font: 400 25px/29px var(--font-family);
   --heading-2-letter-spacing: -0.02em;
   --heading-2-transform: uppercase;
+  --heading-3-font: 400 16px/18px var(--font-family);
+  --heading-4-font: 400 12px/14px var(--font-family);
 
   @include breakpoints.sm-up {
+    --heading-1-font: 400 70px/80px var(--font-family);
     --heading-2-font: 400 35px/40px var(--font-family);
   }
 
-  --heading-3-font: 400 16px/18px var(--font-family);
-  --heading-4-font: 400 12px/14px var(--font-family);
+  @include breakpoints.md-up {
+    --body-padding: 20px;
+  }
+
   --short-banana-clip-path:
     polygon(
       17% 2%,
@@ -61,9 +61,17 @@
 
 html,
 body {
+  display: flex;
   font-family: var(--font-family);
   margin: 0;
+  min-height: 100%;
   padding: 0;
+  width: 100%;
+}
+
+body > div {
+  display: flex;
+  width: 100%;
 }
 
 a {

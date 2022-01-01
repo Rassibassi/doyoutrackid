@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
+import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 
 import styles from "./Layout.module.scss";
@@ -18,9 +19,7 @@ const Layout: NextPage = ({ children }) => {
 
       <main className={styles.main}>{children}</main>
 
-      <footer className={styles.footer}>
-        <p>Rassibassi X Erin Rimmer X jackhkmatthews</p>
-      </footer>
+      <Footer className={styles.footer} />
     </div>
   );
 };
