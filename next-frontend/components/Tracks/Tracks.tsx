@@ -14,15 +14,19 @@ interface ITracksProps {
 
 const Tracks = ({ className, dateQuery }: ITracksProps) => {
   const isToday = dateQuery === TODAY_QUERY;
-  const { tracks } = useAPI(isToday ? TODAY_QUERY : `archive/${dateQuery}`);
+  const { tracks, isLoading, error } = useAPI(
+    isToday ? TODAY_QUERY : `archive/${dateQuery}`
+  );
 
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
 
   return (
     <ul className={rootStyles.join(" ")}>
-      {tracks &&
-        tracks.map(
+      {!!tracks?.length &&
+        !isLoading &&
+        !error &&
+        tracks?.map(
           (
             {
               played_datetime,
@@ -52,6 +56,24 @@ const Tracks = ({ className, dateQuery }: ITracksProps) => {
             </li>
           )
         )}
+      {(!tracks?.length || error) && !isLoading && (
+        <li className={styles.listItem}>
+          <p className={styles.empty}>
+            :(
+            <br />
+            There&apos;s nothing here
+          </p>
+        </li>
+      )}
+      {isLoading && (
+        <li className={styles.listItem}>
+          <p className={styles.empty}>
+            :D
+            <br />
+            Loading...
+          </p>
+        </li>
+      )}
     </ul>
   );
 };
