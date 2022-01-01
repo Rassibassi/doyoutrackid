@@ -20,5 +20,11 @@
 }
 
 .link {
+  clip-path: var(--short-banana-with-day-clip-path);
   display: inline-block;
+
+  &:hover,
+  &:active {
+    background-color: var(--blue-01);
+  }
 }
