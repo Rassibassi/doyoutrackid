@@ -43,16 +43,17 @@ const Track = ({
         href={listenHref}
         target="_blank"
         rel="noreferrer"
-        className={styles.link}
+        className={styles.sticker}
       >
-        <Image
-          className={styles.sticker}
-          src="v1640336995/doyoutrackid/del-monte_egzmja.png"
-          height="80"
-          width="101"
-          alt="Banana sticker"
-        />
-        <span className={styles.linkText}>Listen</span>
+        <span className={styles.stickerInner}>
+          <Image
+            src="v1640336995/doyoutrackid/del-monte_egzmja.png"
+            height="80"
+            width="101"
+            alt="Banana sticker"
+          />
+          <span className={styles.linkText}>Listen</span>
+        </span>
       </a>
     </div>
   );
