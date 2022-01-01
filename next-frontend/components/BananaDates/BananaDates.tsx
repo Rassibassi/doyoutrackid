@@ -16,38 +16,49 @@ interface IBananaDatesProps {
 const BananaDates = ({ dates, className }: IBananaDatesProps) => {
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
+  if (!dates.length) rootStyles.push(styles.empty);
 
   return (
     <ul className={rootStyles.join(" ")}>
-      {dates.map((date) => (
-        <li
-          key={format(date, "dd-LL-yyyy")}
-          className={styles.listItem}
-          style={
-            {
-              "--rotation":
-                ROTATION_DEGS[
-                  Math.floor(Math.random() * ROTATION_DEGS.length)
-                ] + "deg",
-            } as React.CSSProperties
-          }
-        >
-          <Link
-            href={{
-              pathname: ROUTE_HREF.tracks,
-              query: { date: format(date, "yyyy-LL-dd") },
-            }}
-            passHref
-          >
-            <a className={styles.link}>
-              <DateBanana
-                date={format(date, "dd/LL/yyyy")}
-                day={format(date, "EEE")}
-              />
-            </a>
-          </Link>
+      {!dates.length && (
+        <li className={styles.listItem}>
+          <p className={styles.empty}>
+            :(
+            <br />
+            There&apos;s nothing here
+          </p>
         </li>
-      ))}
+      )}
+      {!!dates.length &&
+        dates.map((date) => (
+          <li
+            key={format(date, "dd-LL-yyyy")}
+            className={styles.listItem}
+            style={
+              {
+                "--rotation":
+                  ROTATION_DEGS[
+                    Math.floor(Math.random() * ROTATION_DEGS.length)
+                  ] + "deg",
+              } as React.CSSProperties
+            }
+          >
+            <Link
+              href={{
+                pathname: ROUTE_HREF.tracks,
+                query: { date: format(date, "yyyy-LL-dd") },
+              }}
+              passHref
+            >
+              <a className={styles.link}>
+                <DateBanana
+                  date={format(date, "dd/LL/yyyy")}
+                  day={format(date, "EEE")}
+                />
+              </a>
+            </Link>
+          </li>
+        ))}
     </ul>
   );
 };

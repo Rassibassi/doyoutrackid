@@ -6,6 +6,7 @@
   grid-template-columns: 1fr;
   list-style: none;
   margin: 0;
+  overflow: hidden;
   padding: 0;
 
   @include breakpoints.sm-up {
@@ -13,10 +14,23 @@
   }
 }
 
+.empty {
+  @include typography.heading-1;
+
+  color: black;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .listItem {
   margin: 0;
-  padding: 12%;
+  padding: 14%;
   transform: rotate(var(--rotation));
+
+  .root.empty & {
+    padding: 14% 0 0 14%;
+  }
 }
 
 .link {
