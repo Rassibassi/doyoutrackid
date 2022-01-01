@@ -5,13 +5,21 @@
   display: grid;
   gap: var(--body-padding);
   grid-template-areas: "side main";
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 100px 1fr;
   overflow: hidden;
   padding: var(--body-padding);
+
+  @include breakpoints.sm-up {
+    grid-template-columns: 150px 1fr;
+  }
 }
 
 .nav {
   grid-area: side;
+}
+
+.navInner {
+  position: fixed;
 }
 
 .bananaDates {

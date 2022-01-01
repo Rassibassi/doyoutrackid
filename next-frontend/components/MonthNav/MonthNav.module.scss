@@ -3,6 +3,13 @@
 
 .root {
   display: inline-flex;
+  flex-direction: column;
+}
+
+.nav {
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
 }
 
 .year {

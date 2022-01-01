@@ -20,7 +20,7 @@ const MonthNav = ({ activeMonth, activeYear, className }: IMonthNavProps) => {
   return (
     <nav className={rootStyles.join(" ")}>
       {ARCHIVE_YEARS.map((year) => (
-        <div key={year.year}>
+        <div key={year.year} className={styles.nav}>
           <h2 className={styles.year}>{year.year}</h2>
           <ul className={styles.navList}>
             {Array.from(year.months.values()).map((month) => (

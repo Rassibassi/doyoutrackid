@@ -39,11 +39,13 @@ const Archive: NextPage = () => {
 
   return isValidQuery ? (
     <div className={styles.root}>
-      <MonthNav
-        className={styles.nav}
-        activeMonth={activeMonth}
-        activeYear={activeYear}
-      />
+      <div className={styles.nav}>
+        <MonthNav
+          className={styles.navInner}
+          activeMonth={activeMonth}
+          activeYear={activeYear}
+        />
+      </div>
       <BananaDates
         dates={ARCHIVE.get(activeYear)?.months.get(activeMonth)?.days || []}
         className={styles.bananaDates}
