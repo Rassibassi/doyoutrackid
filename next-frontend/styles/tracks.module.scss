@@ -10,7 +10,7 @@
   padding-left: min(57px, 11%);
   padding-right: min(32px, 7%);
   position: fixed;
-  top: min(200px, 50vw);
+  top: min(200px, 35vw);
   transform:
     translate(-3%, -50%)
     rotate(
@@ -31,7 +31,7 @@
   max-width: 200px;
   position: fixed;
   right: 30px;
-  top: min(350px, 100vw);
+  top: min(275px, 100vw);
   transform:
     translateY(-50%)
     rotate(
@@ -49,8 +49,9 @@
 }
 
 .list {
-  --margin-top: min(400px, 115vw);
+  --margin-top: min(400px, 70vw);
 
+  margin-bottom: 100px;
   margin-top: var(--margin-top);
 
   @include breakpoints.sm-up {

@@ -33,7 +33,7 @@ const Track = ({
       <p className={styles.album}>
         Album: <span className={styles.value}>{album}</span>
       </p>
-      <p className={styles.album}>
+      <p className={styles.label}>
         Label: <span className={styles.value}>{label}</span>
       </p>
       <p className={styles.releaseDate}>
