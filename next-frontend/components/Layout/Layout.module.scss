@@ -12,19 +12,22 @@
 }
 
 .header {
-  align-items: center;
-  background: linear-gradient(180deg, white 0%, white 50%, rgb(255 255 255 / 0%) 100%);
   display: flex;
   grid-area: header;
-  padding-bottom: 40px;
-  position: fixed;
   width: 100%;
-  z-index: 1;
 }
 
-.navbar {
-  padding: 10px var(--body-padding);
+.nav {
+  background: linear-gradient(180deg, white 0%, white 50%, rgb(255 255 255 / 0%) 100%);
+  padding: 10px var(--body-padding) 40px;
+  position: fixed;
+  transition: transform 0.3s;
   width: 100%;
+  z-index: 1;
+
+  &.hide {
+    transform: translateY(calc(-100% + 40px));
+  }
 }
 
 .main {
