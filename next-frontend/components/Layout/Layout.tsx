@@ -28,7 +28,7 @@ const Layout: NextPage = ({ children }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>DO!! YOU!!! TRACK ID!!!!</title>
+        <title>DO!! YOU!!! TRACK ID</title>
       </Head>
 
       <header className={styles.header} ref={headerRef}>

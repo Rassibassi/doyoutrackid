@@ -17,7 +17,7 @@ const Navbar = ({ className }: INavbarProps) => {
       <Link href={ROUTES.get(ROUTE_HREF.home)?.href as string} passHref>
         <a>
           <h1 className={styles.title}>
-            Do!! You!!!<span className={styles.trackId}> Track ID!!!!</span>
+            Do!! You!!!<span className={styles.trackId}> Track ID</span>
           </h1>
         </a>
       </Link>
