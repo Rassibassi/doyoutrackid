@@ -2,10 +2,10 @@ import { parseISO, format } from "date-fns";
 
 import Track from "../Track/Track";
 import { useAPI } from "../../hooks/useAPI";
+import { ITrack } from "../../constants/tracks";
+import { TODAY, TODAY_API_QUERY } from "../../constants/dates";
 
 import styles from "./Tracks.module.scss";
-
-const TODAY_QUERY = "today";
 
 interface ITracksProps {
   className?: string;
@@ -13,10 +13,12 @@ interface ITracksProps {
 }
 
 const Tracks = ({ className, dateQuery }: ITracksProps) => {
-  const isToday = dateQuery === TODAY_QUERY;
-  const { tracks, isLoading, error } = useAPI(
-    isToday ? TODAY_QUERY : `archive/${dateQuery}`
-  );
+  const isToday = dateQuery === TODAY_API_QUERY;
+  const { tracks, isLoading, error } = useAPI(`archive/${dateQuery}`);
+
+  const orderedTracks = isToday
+    ? tracks?.reduce((a, b) => [b].concat(a), [] as ITrack[])
+    : tracks;
 
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
@@ -26,7 +28,7 @@ const Tracks = ({ className, dateQuery }: ITracksProps) => {
       {!!tracks?.length &&
         !isLoading &&
         !error &&
-        tracks?.map(
+        orderedTracks?.map(
           (
             {
               played_datetime,
@@ -58,6 +60,7 @@ const Tracks = ({ className, dateQuery }: ITracksProps) => {
         )}
       {(!tracks?.length || error) && !isLoading && (
         <li className={styles.listItem}>
+          <p className={styles.time}>{format(TODAY, "HH:mm")}</p>
           <p className={styles.empty}>
             :(
             <br />
@@ -67,6 +70,7 @@ const Tracks = ({ className, dateQuery }: ITracksProps) => {
       )}
       {isLoading && (
         <li className={styles.listItem}>
+          <p className={styles.time}>{format(TODAY, "HH:mm")}</p>
           <p className={styles.empty}>
             :D
             <br />

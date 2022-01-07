@@ -10,6 +10,7 @@
 .listItem {
   margin: 124px 0 0;
   padding: 0;
+  position: relative;
 }
 
 .empty {
@@ -19,4 +20,18 @@
   hyphens: auto;
   overflow-wrap: break-word;
   word-break: break-word;
+
+  @include breakpoints.sm-up {
+    padding-left: 80px;
+  }
+}
+
+.time {
+  @include typography.heading-3;
+
+  @include breakpoints.sm-up {
+    left: 8px;
+    position: absolute;
+    top: 26px;
+  }
 }

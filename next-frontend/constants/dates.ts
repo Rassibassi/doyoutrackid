@@ -16,6 +16,8 @@ export type IArchiveYears = Map<string, IArchiveYear>;
 
 export const START_DATE = new Date(2021, 9, 25);
 export const TODAY = new Date();
+export const TODAY_API_QUERY = format(TODAY, "dd/LL/yyyy");
+export const TODAY_ROUTE_QUERY = format(TODAY, "yyyy-LL-dd");
 
 export function getStartArchive(): IArchiveYears {
   return new Map([
@@ -70,5 +72,3 @@ export const ARCHIVE: IArchiveYears = eachDayOfInterval({
   }, getStartArchive());
 
 export const ARCHIVE_YEARS = Array.from(ARCHIVE.values());
-
-export const TODAY_QUERY = "today";
