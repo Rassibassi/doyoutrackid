@@ -6,7 +6,9 @@ import { ROUTE, ROUTES } from "../../constants/routes";
 
 import styles from "./BananaDates.module.scss";
 
-const ROTATION_DEGS = [285, 315, 360, 15];
+const ROTATION_DEGS = [15, 285, 360, 255, 315];
+const ROTATION_ANI_DEGS = [20, 280, 355, 250, 320];
+const ROTATION_DUR = [1.4, 1, 1.8, 1.5, 1.2];
 
 interface IBananaDatesProps {
   dates: Date[];
@@ -16,7 +18,6 @@ interface IBananaDatesProps {
 const BananaDates = ({ dates, className }: IBananaDatesProps) => {
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
-  if (!dates.length) rootStyles.push(styles.empty);
 
   return (
     <ul className={rootStyles.join(" ")}>
@@ -30,16 +31,15 @@ const BananaDates = ({ dates, className }: IBananaDatesProps) => {
         </li>
       )}
       {!!dates.length &&
-        dates.map((date) => (
+        dates.map((date, index) => (
           <li
             key={format(date, "dd-LL-yyyy")}
             className={styles.listItem}
             style={
               {
-                "--rotation":
-                  ROTATION_DEGS[
-                    Math.floor(Math.random() * ROTATION_DEGS.length)
-                  ] + "deg",
+                "--rotation": ROTATION_DEGS[index % 5] + "deg",
+                "--rotation-ani": ROTATION_ANI_DEGS[index % 5] + "deg",
+                "--rotation-dur": ROTATION_DUR[index % 5] + "s",
               } as React.CSSProperties
             }
           >

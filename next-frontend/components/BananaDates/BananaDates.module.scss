@@ -2,6 +2,12 @@
 @use "styles/breakpoints";
 
 .root {
+  @keyframes rotate {
+    50% {
+      transform: rotate(var(--rotation-ani));
+    }
+  }
+
   display: grid;
   grid-template-columns: 1fr;
   list-style: none;
@@ -24,13 +30,11 @@
 }
 
 .listItem {
+  animation: rotate var(--rotation-dur) ease-in-out infinite forwards;
   margin: 0;
   padding: 14%;
   transform: rotate(var(--rotation));
-
-  .root.empty & {
-    padding: 14% 0 0 14%;
-  }
+  transform-origin: calc(var(--transform-origin) + var(--translate)) 0;
 }
 
 .link {
