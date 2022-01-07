@@ -42,6 +42,7 @@
   display: inline-block;
 
   &:hover,
+  &:focus,
   &:active {
     background-color: var(--blue-01);
   }
