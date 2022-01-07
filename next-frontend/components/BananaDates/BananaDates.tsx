@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 
 import DateBanana from "../DateBanana/DateBanana";
-import { ROUTE_HREF } from "../../constants/routes";
+import { ROUTE, ROUTES } from "../../constants/routes";
 
 import styles from "./BananaDates.module.scss";
 
@@ -45,7 +45,7 @@ const BananaDates = ({ dates, className }: IBananaDatesProps) => {
           >
             <Link
               href={{
-                pathname: ROUTE_HREF.tracks,
+                ...ROUTES.get(ROUTE.tracks)?.url,
                 query: { date: format(date, "yyyy-LL-dd") },
               }}
               passHref

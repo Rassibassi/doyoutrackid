@@ -1,6 +1,8 @@
+import { UrlObject } from "url";
+
 import Link from "next/link";
 
-import { NAV_BAR_LINKS, ROUTES, ROUTE_HREF } from "../../constants/routes";
+import { NAV_BAR_LINKS, ROUTES, ROUTE } from "../../constants/routes";
 import NavItem from "../NavItem/NavItem";
 
 import styles from "./Navbar.module.scss";
@@ -14,7 +16,7 @@ const Navbar = ({ className }: INavbarProps) => {
   if (className) rootStyles.push(className);
   return (
     <div className={rootStyles.join(" ")}>
-      <Link href={ROUTES.get(ROUTE_HREF.home)?.href as string} passHref>
+      <Link href={ROUTES.get(ROUTE.home)?.url as UrlObject} passHref>
         <a>
           <h1 className={styles.title}>
             Do!! You!!!<span className={styles.trackId}> Track ID</span>
@@ -22,8 +24,8 @@ const Navbar = ({ className }: INavbarProps) => {
         </a>
       </Link>
       <nav className={styles.nav}>
-        {NAV_BAR_LINKS.map(({ href, label }) => (
-          <Link href={href} passHref key={href}>
+        {NAV_BAR_LINKS.map(({ url, label }) => (
+          <Link href={url} passHref key={label}>
             <NavItem>{label}</NavItem>
           </Link>
         ))}

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import { ARCHIVE, TODAY } from "../constants/dates";
-import { ROUTE_HREF } from "../constants/routes";
+import { ROUTE, ROUTES } from "../constants/routes";
 import styles from "../styles/archive.module.scss";
 import MonthNav from "../components/MonthNav/MonthNav";
 import BananaDates from "../components/BananaDates/BananaDates";
@@ -25,7 +25,7 @@ const Archive: NextPage = () => {
     if (!isValidQuery && isReady) {
       replace(
         {
-          pathname: `/${ROUTE_HREF.archive}`,
+          ...ROUTES.get(ROUTE.archive)?.url,
           query: {
             month: format(TODAY, "LLLL"),
             year: format(TODAY, "yyyy"),

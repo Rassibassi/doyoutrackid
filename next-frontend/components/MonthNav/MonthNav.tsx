@@ -2,8 +2,8 @@ import Link from "next/link";
 
 import PillCta from "../PillCta/PillCta";
 import { ARCHIVE_YEARS } from "../../constants/dates";
-import { ROUTE_HREF } from "../../constants/routes";
 import { EPolyAs } from "../PolyCta/PolyCta";
+import { ROUTE, ROUTES } from "../../constants/routes";
 
 import styles from "./MonthNav.module.scss";
 
@@ -27,7 +27,7 @@ const MonthNav = ({ activeMonth, activeYear, className }: IMonthNavProps) => {
               <li key={month.month} className={styles.navItem}>
                 <Link
                   href={{
-                    pathname: `/${ROUTE_HREF.archive}`,
+                    ...ROUTES.get(ROUTE.archive)?.url,
                     query: {
                       year: `${year.year}`,
                       month: `${month.month}`,

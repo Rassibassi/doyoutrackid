@@ -7,17 +7,13 @@ import {
   BANANA_NAME,
   IBananaImage,
 } from "../../constants/bananas";
+import { IRoute } from "../../constants/routes";
 
 import styles from "./Bananas.module.scss";
 
-export interface ILink {
-  href: string;
-  label: string;
-}
-
 interface IBananasProps {
   className?: string;
-  links?: ILink[];
+  links?: IRoute[];
   shouldJiggle?: boolean;
 }
 
@@ -41,8 +37,16 @@ const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
           return (
             <li key={index} className={styles.item}>
               {link && (
-                <Link href={link.href} passHref>
-                  <a className={styles.anchor}>{link.label}</a>
+                <Link href={link.url} passHref>
+                  <a
+                    target={
+                      link.url.pathname?.startsWith("http") ? "_blank" : ""
+                    }
+                    rel="noreferrer"
+                    className={styles.anchor}
+                  >
+                    {link.label}
+                  </a>
                 </Link>
               )}
               <Image

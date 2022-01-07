@@ -1,4 +1,8 @@
-export enum ROUTE_HREF {
+import { UrlObject } from "url";
+
+import { TODAY_ROUTE_QUERY } from "./dates";
+
+export enum ROUTE {
   listen = "listen",
   home = "home",
   today = "today",
@@ -7,55 +11,68 @@ export enum ROUTE_HREF {
 }
 
 export interface IRoute {
-  href: string;
   label: string;
+  url: Partial<UrlObject>;
 }
 
-export const ROUTES = new Map<ROUTE_HREF, IRoute>([
+export const ROUTES = new Map<ROUTE, IRoute>([
   [
-    ROUTE_HREF.home,
+    ROUTE.home,
     {
-      href: "/",
       label: "Home",
+      url: {
+        pathname: "/",
+      },
     },
   ],
   [
-    ROUTE_HREF.archive,
+    ROUTE.archive,
     {
-      href: "/archive",
+      url: {
+        pathname: "/archive",
+      },
       label: "Archive",
     },
   ],
   [
-    ROUTE_HREF.today,
+    ROUTE.today,
     {
-      href: "/tracks",
+      url: {
+        pathname: "/tracks",
+        query: {
+          date: TODAY_ROUTE_QUERY,
+        },
+      },
       label: "Today",
     },
   ],
   [
-    ROUTE_HREF.tracks,
+    ROUTE.tracks,
     {
-      href: "/tracks",
+      url: {
+        pathname: "/tracks",
+      },
       label: "Tracks",
     },
   ],
   [
-    ROUTE_HREF.listen,
+    ROUTE.listen,
     {
-      href: "https://doyou.world/",
+      url: {
+        pathname: "https://doyou.world/",
+      },
       label: "Listen",
     },
   ],
 ]);
 
 export const BANANA_NAV_LINKS = [
-  ROUTES.get(ROUTE_HREF.listen),
-  ROUTES.get(ROUTE_HREF.today),
-  ROUTES.get(ROUTE_HREF.archive),
+  ROUTES.get(ROUTE.listen),
+  ROUTES.get(ROUTE.today),
+  ROUTES.get(ROUTE.archive),
 ] as IRoute[];
 
 export const NAV_BAR_LINKS = [
-  ROUTES.get(ROUTE_HREF.today),
-  ROUTES.get(ROUTE_HREF.archive),
+  ROUTES.get(ROUTE.today),
+  ROUTES.get(ROUTE.archive),
 ] as IRoute[];
