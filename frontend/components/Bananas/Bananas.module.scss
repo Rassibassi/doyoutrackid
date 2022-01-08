@@ -24,7 +24,7 @@
   padding: 0;
   position: relative;
   transform: translateX(-31%);
-  width: min(180%, 550px);
+  width: 100%;
 }
 
 .item {
@@ -83,8 +83,8 @@
   display: inline-block;
   width: 100%;
 
-  &:hover,
-  &:focus {
+  .root:not(.noHover) &:hover,
+  .root:not(.noHover) &:focus {
     background-color: var(--blue-01);
   }
 }

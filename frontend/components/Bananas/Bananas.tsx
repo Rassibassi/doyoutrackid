@@ -10,12 +10,19 @@ interface IBananasProps {
   shouldJiggle?: boolean;
 }
 
+const bananaSrc = {
+  srcSet:
+    "https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_640,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png 1x, https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_1080,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png 2x",
+  src: "https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_1080,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png",
+};
+
 const BANANAS = new Array(3).fill("");
 
 const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
   if (shouldJiggle) rootStyles.push(styles.shouldJiggle);
+  if (links.length) rootStyles.push(styles.noHover);
 
   return (
     <div className={rootStyles.join(" ")}>
@@ -24,7 +31,7 @@ const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
           const link = links[index];
           return (
             <li key={index} className={styles.item}>
-              {link && (
+              {link ? (
                 <Link href={link.url} passHref>
                   <a
                     target={
@@ -35,16 +42,19 @@ const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      className={styles.img}
                       alt="Banana!"
-                      srcSet="https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_640,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png 1x, https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_1080,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png 2x"
-                      src="https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_1080,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png"
+                      {...bananaSrc}
                       decoding="async"
                       data-nimg="intrinsic"
                     />
                     <span className={styles.label}>{link.label}</span>
                   </a>
                 </Link>
+              ) : (
+                <div className={styles.anchor}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img className={styles.img} {...bananaSrc} alt="Banana!" />
+                </div>
               )}
             </li>
           );
