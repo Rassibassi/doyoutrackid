@@ -13,25 +13,22 @@
   position: relative;
 }
 
-.empty {
-  @include typography.heading-1;
-
-  color: black;
-  hyphens: auto;
-  overflow-wrap: break-word;
-  word-break: break-word;
-
-  @include breakpoints.sm-up {
-    padding-left: 80px;
-  }
-}
-
-.time {
+.elevenEleven {
   @include typography.heading-3;
+
+  margin: 124px 0 0;
 
   @include breakpoints.sm-up {
     left: 8px;
-    position: absolute;
-    top: 26px;
+    position: relative;
+  }
+}
+
+.btn {
+  opacity: 0.2;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
   }
 }
