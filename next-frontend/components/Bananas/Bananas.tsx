@@ -1,12 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
-import {
-  BANANA_IMAGES,
-  BANANA_NAME,
-  IBananaImage,
-} from "../../constants/bananas";
 import { IRoute } from "../../constants/routes";
 
 import styles from "./Bananas.module.scss";
@@ -17,16 +10,11 @@ interface IBananasProps {
   shouldJiggle?: boolean;
 }
 
-const BANANA = BANANA_IMAGES.get(BANANA_NAME.short) as IBananaImage;
-
 const BANANAS = new Array(3).fill("");
 
 const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
-  const [hasLoaded, setHasLoaded] = useState(false);
-
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
-  if (hasLoaded) rootStyles.push(styles.hasLoaded);
   if (shouldJiggle) rootStyles.push(styles.shouldJiggle);
 
   return (
@@ -45,18 +33,19 @@ const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
                     rel="noreferrer"
                     className={styles.anchor}
                   >
-                    {link.label}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      className={styles.img}
+                      alt="Banana!"
+                      srcSet="https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_640,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png 1x, https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_1080,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png 2x"
+                      src="https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_1080,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png"
+                      decoding="async"
+                      data-nimg="intrinsic"
+                    />
+                    <span className={styles.label}>{link.label}</span>
                   </a>
                 </Link>
               )}
-              <Image
-                width={BANANA.width}
-                height={BANANA.height}
-                src={BANANA.src}
-                priority
-                onLoadingComplete={() => setHasLoaded(true)}
-                alt="Banana!"
-              />
             </li>
           );
         })}

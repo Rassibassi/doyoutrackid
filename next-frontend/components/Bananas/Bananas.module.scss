@@ -7,7 +7,6 @@
 }
 
 .root {
-  opacity: 0;
   padding-bottom: 12%;
   padding-left: 24%;
   padding-right: 13%;
@@ -25,28 +24,21 @@
   padding: 0;
   position: relative;
   transform: translateX(-31%);
+  width: min(180%, 550px);
 }
 
 .item {
-  background-color: transparent;
   clip-path: var(--short-banana-clip-path);
   display: inline-block;
-  font-size: 0;
   margin: 0;
   padding: 0;
-  pointer-events: none;
   transform: rotate(var(--rotate)) translate3d(var(--translate), 0, 0);
   transform-origin: calc(var(--transform-origin) + var(--translate)) 0;
   transition: transform 0.5s;
-  user-select: none;
+  width: 100%;
 
   .shouldJiggle & {
     animation: rotate var(--duration) ease-in-out infinite forwards;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: var(--blue-01);
   }
 
   &:nth-child(1) {
@@ -88,27 +80,26 @@
 }
 
 .anchor {
+  display: inline-block;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    background-color: var(--blue-01);
+  }
+}
+
+.img {
+  width: 100%;
+}
+
+.label {
   @include typography.heading-3;
 
   color: black;
   left: 29%;
   padding: 20px;
-  pointer-events: all;
   position: absolute;
   top: 64%;
   transform: translate(-50%, -50%);
-  z-index: 1;
-
-  &::after {
-    bottom: -3px;
-    content: "";
-    display: block;
-    height: 1px;
-    position: relative;
-    width: 100%;
-  }
-
-  &:hover::after {
-    background-color: black;
-  }
 }
