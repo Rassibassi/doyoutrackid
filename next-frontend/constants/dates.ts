@@ -1,4 +1,4 @@
-import { format, eachDayOfInterval, add } from "date-fns";
+import { format, eachDayOfInterval, add, set } from "date-fns";
 
 import { isWeekDay } from "../utils";
 
@@ -18,6 +18,10 @@ export const START_DATE = new Date(2021, 9, 25);
 export const TODAY = new Date();
 export const TODAY_API_QUERY = format(TODAY, "dd/LL/yyyy");
 export const TODAY_ROUTE_QUERY = format(TODAY, "yyyy-LL-dd");
+export const ELEVEN_ELEVEN_INTERVAL = {
+  start: set(TODAY, { hours: 11, minutes: 11, seconds: 0 }),
+  end: set(TODAY, { hours: 11, minutes: 12, seconds: 0 }),
+};
 
 export function getStartArchive(): IArchiveYears {
   return new Map([

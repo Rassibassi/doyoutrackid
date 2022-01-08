@@ -1,6 +1,6 @@
 @use "styles/breakpoints";
 
-.container {
+.root {
   display: grid;
   gap: var(--body-padding);
   grid-template-areas:
@@ -32,9 +32,17 @@
 
 .main {
   grid-area: main;
+
+  .root.isElevenEleven & {
+    opacity: 0;
+  }
 }
 
 .footer {
   grid-area: footer;
   width: 100%;
+
+  .root.isElevenEleven & {
+    opacity: 0;
+  }
 }

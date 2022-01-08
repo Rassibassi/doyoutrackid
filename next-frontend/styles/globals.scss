@@ -104,6 +104,11 @@ body {
   width: 100%;
 }
 
+body.noScroll {
+  height: 100%;
+  overflow: hidden;
+}
+
 body > div {
   display: flex;
   width: 100%;

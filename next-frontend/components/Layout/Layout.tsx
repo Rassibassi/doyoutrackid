@@ -1,12 +1,14 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 
+import { ElevenEleven } from "../../contexts/elevenEleven";
 import { useIntersectionObserver } from "../../hooks/useIntersectionObserver";
 import {
   SCROLL_DIRECTION,
   useScrollDirection,
 } from "../../hooks/useScrollDirection";
+import ElevenElevenOverlay from "../ElevenElevenOverlay/ElevenElevenOverlay";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 
@@ -14,6 +16,7 @@ import styles from "./Layout.module.scss";
 
 const Layout: NextPage = ({ children }) => {
   const headerRef = useRef<HTMLElement>(null);
+  const { isElevenEleven } = useContext(ElevenEleven);
   const scrollDirection = useScrollDirection();
   const entry = useIntersectionObserver(null, "0px", 1, headerRef.current);
   const navStyles = [styles.nav];
@@ -25,8 +28,11 @@ const Layout: NextPage = ({ children }) => {
     navStyles.push(styles.hide);
   }
 
+  const rootStyles = [styles.root];
+  if (isElevenEleven) rootStyles.push(styles.isElevenEleven);
+
   return (
-    <div className={styles.container}>
+    <div className={rootStyles.join(" ")}>
       <Head>
         <title>DO!! YOU!!! TRACK ID</title>
       </Head>
@@ -38,6 +44,10 @@ const Layout: NextPage = ({ children }) => {
       <main className={styles.main}>{children}</main>
 
       <Footer className={styles.footer} />
+
+      {isElevenEleven && (
+        <ElevenElevenOverlay className={styles.elevenEleven} />
+      )}
     </div>
   );
 };
