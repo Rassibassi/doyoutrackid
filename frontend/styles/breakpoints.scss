@@ -21,3 +21,9 @@
     @content;
   }
 }
+
+@mixin xl-up {
+  @media (min-width: 1600px) {
+    @content;
+  }
+}

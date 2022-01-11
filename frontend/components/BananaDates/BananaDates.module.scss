@@ -18,6 +18,10 @@
   @include breakpoints.sm-up {
     grid-template-columns: 1fr 1fr;
   }
+
+  @include breakpoints.xl-up {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .empty {
