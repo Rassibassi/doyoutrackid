@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { IRoute } from "../../constants/routes";
+import ShortBanana from "../ShortBanana/PaddedBanana";
 
 import styles from "./Bananas.module.scss";
 
@@ -10,19 +11,13 @@ interface IBananasProps {
   shouldJiggle?: boolean;
 }
 
-const bananaSrc = {
-  srcSet:
-    "https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_640,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png 1x, https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_1080,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png 2x",
-  src: "https://res.cloudinary.com/dmqr7syhe/f_auto,c_limit,w_1080,q_auto/v1640127156/doyoutrackid/banana_short_l5wtkg.png",
-};
-
 const BANANAS = new Array(3).fill("");
 
 const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
   if (shouldJiggle) rootStyles.push(styles.shouldJiggle);
-  if (links.length) rootStyles.push(styles.noHover);
+  if (links.length) rootStyles.push(styles.shouldHover);
 
   return (
     <div className={rootStyles.join(" ")}>
@@ -38,22 +33,15 @@ const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
                       link.url.pathname?.startsWith("http") ? "_blank" : ""
                     }
                     rel="noreferrer"
-                    className={styles.anchor}
+                    className={styles.bananaWrapper}
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      alt="Banana!"
-                      {...bananaSrc}
-                      decoding="async"
-                      data-nimg="intrinsic"
-                    />
+                    <ShortBanana className={styles.img} />
                     <span className={styles.label}>{link.label}</span>
                   </a>
                 </Link>
               ) : (
-                <div className={styles.anchor}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className={styles.img} {...bananaSrc} alt="Banana!" />
+                <div className={styles.bananaWrapper}>
+                  <ShortBanana className={styles.img} />
                 </div>
               )}
             </li>

@@ -1,20 +1,11 @@
-@use "styles/typography";
-
 @keyframes rotate {
   50% {
-    transform: rotate(var(--rotate-ani)) translate3d(var(--translate), 0, 0);
+    transform: rotate(var(--rotate-ani)) translate3d(0, 0, 0);
   }
 }
 
 .root {
-  padding-bottom: 12%;
-  padding-left: 24%;
-  padding-right: 13%;
-  transition: opacity 1s ease-in-out;
-
-  &.hasLoaded {
-    opacity: 1;
-  }
+  display: inline-block;
 }
 
 .list {
@@ -23,83 +14,73 @@
   margin: 0;
   padding: 0;
   position: relative;
-  transform: translateX(-31%);
-  width: 100%;
 }
 
 .item {
-  clip-path: var(--short-banana-clip-path);
-  display: inline-block;
+  left: 0;
   margin: 0;
   padding: 0;
-  transform: rotate(var(--rotate)) translate3d(var(--translate), 0, 0);
-  transform-origin: calc(var(--transform-origin) + var(--translate)) 0;
-  transition: transform 0.5s;
-  width: 100%;
+  pointer-events: none;
+  top: 0;
+  transform-origin: 7% 13%;
 
   .shouldJiggle & {
     animation: rotate var(--duration) ease-in-out infinite forwards;
   }
 
   &:nth-child(1) {
-    --transform-origin: 10%;
-    --translate: 50%;
-    --rotate: 50deg;
-    --rotate-ani: 54deg;
-    --duration: 4s;
+    --rotate-ani: 4deg;
+    --duration: 2s;
 
     position: relative;
+    transform: rotate(0deg);
     z-index: 3;
   }
 
   &:nth-child(2) {
-    --transform-origin: 10%;
-    --translate: 50%;
-    --rotate: 25deg;
-    --rotate-ani: 22deg;
+    --rotate-ani: -28deg;
     --duration: 3s;
 
-    left: 0;
     position: absolute;
-    top: 0;
+    transform: rotate(-25deg);
     z-index: 2;
   }
 
   &:nth-child(3) {
-    --transform-origin: 10%;
-    --translate: 50%;
-    --rotate: 0deg;
-    --rotate-ani: 3deg;
+    --rotate-ani: -47deg;
     --duration: 4s;
 
-    left: 0;
     position: absolute;
-    top: 0;
+    transform: rotate(-50deg);
     z-index: 1;
   }
 }
 
-.anchor {
+.bananaWrapper {
+  clip-path: var(--padded-banana-clip-path);
   display: inline-block;
-  width: 100%;
+  pointer-events: all;
 
-  .root:not(.noHover) &:hover,
-  .root:not(.noHover) &:focus {
+  .root.shouldHover &:hover,
+  .root.shouldHover &:focus {
     background-color: var(--blue-01);
   }
 }
 
 .img {
-  width: 100%;
+  max-width: 100%;
+  user-select: none;
+  vertical-align: middle;
 }
 
 .label {
-  @include typography.heading-3;
-
-  color: black;
-  left: 29%;
-  padding: 20px;
+  left: 0;
+  left: 19%;
   position: absolute;
-  top: 64%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  top: 72%;
+  transform:
+    translate(-50%, -50%) rotate(
+      -40deg
+    );
 }

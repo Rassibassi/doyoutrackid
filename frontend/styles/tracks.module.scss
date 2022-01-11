@@ -6,17 +6,9 @@
 
 .bananas {
   max-width: 250px;
-  padding-bottom: min(31px, 6%);
-  padding-left: min(57px, 11%);
-  padding-right: min(32px, 7%);
   position: fixed;
-  top: min(200px, 35vw);
-  transform:
-    translate(-3%, -50%)
-    rotate(
-      330deg
-    );
-  width: 50%;
+  top: min(100px, 35vw);
+  width: 40%;
 
   @include breakpoints.sm-up {
     left: 5vw;

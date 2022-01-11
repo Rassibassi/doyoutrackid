@@ -1,16 +1,17 @@
 .root {
-  align-items: center;
-  display: flex;
   height: 100%;
   overflow: hidden;
+  position: relative;
   width: 100%;
 }
 
 .bananaNav {
+  left: 50%;
   margin: 0 auto;
-  max-width: 780px;
-  padding-bottom: min(95px, 20%);
-  padding-left: min(190px, 30%);
-  padding-right: min(100px, 13%);
-  width: 120%;
+  max-width: 700px;
+  position: absolute;
+  top: 60%;
+  transform: rotate(45deg) translate(-50%, -50%);
+  transform-origin: 10% 10%;
+  width: 130%;
 }
