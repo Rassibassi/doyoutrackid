@@ -80,7 +80,7 @@ export const ROUTES = new Map<ROUTE, IRoute>([
       },
       label: "Listen",
       sticker: {
-        src: "v1640336995/doyoutrackid/sticker_do_you_gpalw0.png",
+        src: "v1640336995/doyoutrackid/sticker_do_you_b8qwk1.png",
         height: 100,
         width: 100,
       },
