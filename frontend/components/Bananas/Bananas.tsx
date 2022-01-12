@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 
-import { IRoute } from "../../constants/routes";
+import { IRoute, ISticker } from "../../constants/routes";
 import ShortBanana from "../ShortBanana/PaddedBanana";
 
 import styles from "./Bananas.module.scss";
@@ -35,13 +36,20 @@ const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
                     rel="noreferrer"
                     className={styles.bananaWrapper}
                   >
-                    <ShortBanana className={styles.img} />
+                    <ShortBanana className={styles.banana} />
+                    <div className={styles.sticker}>
+                      <Image
+                        layout="responsive"
+                        {...(link.sticker as ISticker)}
+                        alt={link.label}
+                      />
+                    </div>
                     <span className={styles.label}>{link.label}</span>
                   </a>
                 </Link>
               ) : (
                 <div className={styles.bananaWrapper}>
-                  <ShortBanana className={styles.img} />
+                  <ShortBanana className={styles.banana} />
                 </div>
               )}
             </li>

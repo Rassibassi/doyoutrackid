@@ -10,9 +10,16 @@ export enum ROUTE {
   tracks = "tracks",
 }
 
+export interface ISticker {
+  src: string;
+  height: number;
+  width: number;
+}
+
 export interface IRoute {
   label: string;
   url: Partial<UrlObject>;
+  sticker?: ISticker;
 }
 
 export const ROUTES = new Map<ROUTE, IRoute>([
@@ -32,6 +39,11 @@ export const ROUTES = new Map<ROUTE, IRoute>([
         pathname: "/archive",
       },
       label: "Archive",
+      sticker: {
+        src: "v1640336995/doyoutrackid/sticker_archive_qwadum.png",
+        height: 62,
+        width: 100,
+      },
     },
   ],
   [
@@ -44,6 +56,11 @@ export const ROUTES = new Map<ROUTE, IRoute>([
         },
       },
       label: "Today",
+      sticker: {
+        src: "v1640336995/doyoutrackid/sticker_today_mykwki.png",
+        height: 96,
+        width: 100,
+      },
     },
   ],
   [
@@ -62,6 +79,11 @@ export const ROUTES = new Map<ROUTE, IRoute>([
         pathname: "https://doyou.world/",
       },
       label: "Listen",
+      sticker: {
+        src: "v1640336995/doyoutrackid/sticker_do_you_gpalw0.png",
+        height: 100,
+        width: 100,
+      },
     },
   ],
 ]);

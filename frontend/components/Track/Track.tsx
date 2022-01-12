@@ -45,15 +45,14 @@ const Track = ({
         rel="noreferrer"
         className={styles.sticker}
       >
-        <span className={styles.stickerInner}>
-          <Image
-            src="v1640336995/doyoutrackid/del-monte_egzmja.png"
-            height="80"
-            width="101"
-            alt="Banana sticker"
-          />
-          <span className={styles.linkText}>Listen</span>
-        </span>
+        <Image
+          className={styles.stickerImg}
+          src="v1640336995/doyoutrackid/sticker_listen_now_iqgl4g.png"
+          height="81"
+          width="100"
+          alt="Banana sticker"
+        />
+        <span className={styles.linkText}>Listen</span>
       </a>
     </div>
   );

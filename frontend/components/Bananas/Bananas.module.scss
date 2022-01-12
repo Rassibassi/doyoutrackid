@@ -1,3 +1,6 @@
+@use "styles/accessibility";
+@use "styles/breakpoints";
+
 @keyframes rotate {
   50% {
     transform: rotate(var(--rotate-ani)) translate3d(0, 0, 0);
@@ -67,13 +70,15 @@
   }
 }
 
-.img {
+.banana {
   max-width: 100%;
   user-select: none;
   vertical-align: middle;
 }
 
-.label {
+.sticker {
+  aspect-ratio: 1;
+  display: inline-block;
   left: 0;
   left: 19%;
   position: absolute;
@@ -83,4 +88,9 @@
     translate(-50%, -50%) rotate(
       -40deg
     );
+  width: 13%;
+}
+
+.label {
+  @include accessibility.screen-reader-only;
 }
