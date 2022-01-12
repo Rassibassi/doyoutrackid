@@ -12,7 +12,7 @@ export const BANANA_IMAGES = new Map<BANANA_NAME, IBananaImage>([
   [
     BANANA_NAME.short,
     {
-      src: "v1640127156/doyoutrackid/banana_short_l5wtkg.png",
+      src: "v1640127156/doyoutrackid/banana_gtye3j.png",
       width: 472,
       height: 528,
     },
@@ -20,7 +20,7 @@ export const BANANA_IMAGES = new Map<BANANA_NAME, IBananaImage>([
 ]);
 
 export const PADDED_BANANA_SRC =
-  "https://res.cloudinary.com/dmqr7syhe/image/upload/c_mpad,g_south_west,h_600,w_700/v1640256804/doyoutrackid/banana_short_l5wtkg.png";
+  "https://res.cloudinary.com/dmqr7syhe/image/upload/c_mpad,g_south_west,h_600,w_700/v1640256804/doyoutrackid/banana_gtye3j.png";
 
 export enum SHADE {
   light = "light",
