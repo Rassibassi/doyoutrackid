@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import { useRef, useContext } from "react";
 
 import { ElevenEleven } from "../../contexts/elevenEleven";
@@ -33,10 +32,6 @@ const Layout: NextPage = ({ children }) => {
 
   return (
     <div className={rootStyles.join(" ")}>
-      <Head>
-        <title>DO!! YOU!!! TRACK ID</title>
-      </Head>
-
       <header className={styles.header} ref={headerRef}>
         <Navbar className={navStyles.join(" ")} />
       </header>

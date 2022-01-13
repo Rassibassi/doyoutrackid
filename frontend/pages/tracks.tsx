@@ -4,6 +4,7 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { format, parseISO } from "date-fns";
+import Head from "next/head";
 
 import Bananas from "../components/Bananas/Bananas";
 import DateBanana from "../components/DateBanana/DateBanana";
@@ -26,6 +27,9 @@ const TracksPage: NextPage = () => {
 
   return (
     <section className={styles.root}>
+      <Head>
+        <title>DO!! YOU!!! TRACK ID - Tracks {query?.date}</title>
+      </Head>
       <Bananas className={styles.bananas} />
       {isValidQuery && (
         <>

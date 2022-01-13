@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Head from "next/head";
 
 import { ARCHIVE, TODAY } from "../constants/dates";
 import { ROUTE, ROUTES } from "../constants/routes";
@@ -39,6 +40,9 @@ const Archive: NextPage = () => {
 
   return isValidQuery ? (
     <div className={styles.root}>
+      <Head>
+        <title>DO!! YOU!!! TRACK ID - Archive</title>
+      </Head>
       <div className={styles.nav}>
         <MonthNav
           className={styles.navInner}
@@ -51,7 +55,11 @@ const Archive: NextPage = () => {
         className={styles.bananaDates}
       />
     </div>
-  ) : null;
+  ) : (
+    <Head>
+      <title>DO!! YOU!!! TRACK ID - Archive</title>
+    </Head>
+  );
 };
 
 export default Archive;
