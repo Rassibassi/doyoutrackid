@@ -1,0 +1,165 @@
+@use "styles/breakpoints";
+
+:root {
+  --body-padding: 10px;
+  --grey-01: #131313;
+  --grey-02: #b8b8b8;
+  --grey-03: #979797;
+  --yellow-01: #f4dd7c;
+  --blue-01: #4770cf;
+  --font-family: "Arial Narrow", arial;
+  --heading-1-font: 400 50px/57px var(--font-family);
+  --heading-1-letter-spacing: -0.02em;
+  --heading-1-transform: uppercase;
+  --heading-2-font: 400 25px/29px var(--font-family);
+  --heading-2-letter-spacing: -0.02em;
+  --heading-2-transform: uppercase;
+  --heading-3-font: 400 16px/18px var(--font-family);
+  --heading-4-font: 400 12px/14px var(--font-family);
+
+  @include breakpoints.sm-up {
+    --heading-1-font: 400 70px/80px var(--font-family);
+    --heading-2-font: 400 35px/40px var(--font-family);
+  }
+
+  @include breakpoints.md-up {
+    --body-padding: 20px;
+  }
+
+  --padded-banana-clip-path:
+    polygon(
+      9% 10%,
+      12% 16%,
+      14% 24%,
+      15% 31%,
+      18% 42%,
+      21% 50%,
+      25% 58%,
+      30% 64%,
+      35% 69%,
+      41% 73%,
+      49% 77%,
+      59% 80%,
+      66% 83%,
+      69% 86%,
+      67% 91%,
+      63% 96%,
+      55% 100%,
+      45% 100%,
+      34% 100%,
+      28% 97%,
+      21% 94%,
+      14% 88%,
+      8% 80%,
+      3% 68%,
+      0% 54%,
+      0% 41%,
+      0% 28%,
+      2% 19%,
+      5% 12%
+    );
+  --short-banana-clip-path:
+    polygon(
+      17% 2%,
+      22% 19%,
+      29% 37%,
+      38% 51%,
+      49% 61%,
+      63% 70%,
+      69% 72%,
+      73% 73%,
+      79% 75%,
+      96% 79%,
+      100% 82%,
+      100% 85%,
+      100% 88%,
+      97% 94%,
+      89% 99%,
+      79% 100%,
+      63% 100%,
+      51% 100%,
+      37% 96%,
+      20% 85%,
+      6% 69%,
+      1% 54%,
+      0% 41%,
+      0% 28%,
+      0% 21%,
+      2% 12%,
+      4% 5%,
+      8% 0%,
+      12% 0%,
+      16% 0%
+    );
+  --short-banana-with-day-clip-path:
+    polygon(
+      17% 2%,
+      22% 19%,
+      29% 37%,
+      38% 51%,
+      50% 61%,
+      59% 67%,
+      65% 59%,
+      95% 65%,
+      99% 75%,
+      100% 78%,
+      100% 82%,
+      100% 85%,
+      100% 88%,
+      97% 94%,
+      89% 99%,
+      79% 100%,
+      63% 100%,
+      51% 100%,
+      37% 96%,
+      20% 85%,
+      6% 69%,
+      1% 54%,
+      0% 41%,
+      0% 28%,
+      0% 21%,
+      2% 12%,
+      4% 5%,
+      8% 0%,
+      12% 0%,
+      16% 0%
+    );
+}
+
+html,
+body {
+  display: flex;
+  font-family: var(--font-family);
+  margin: 0;
+  min-height: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+body.noScroll {
+  height: 100%;
+  overflow: hidden;
+}
+
+body > div {
+  display: flex;
+  width: 100%;
+}
+
+a {
+  color: inherit;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-display: optional;
+  font-family: "Arial Narrow";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/ArialNarrow.woff2") format("woff2");
+}

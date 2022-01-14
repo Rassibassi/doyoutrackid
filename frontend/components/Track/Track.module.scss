@@ -1,0 +1,92 @@
+@use "styles/breakpoints";
+@use "styles/accessibility";
+@use "styles/typography";
+
+.root {
+  perspective: 500px;
+  position: relative;
+
+  @include breakpoints.sm-up {
+    padding-left: 80px;
+  }
+}
+
+.time {
+  @include typography.heading-3;
+
+  @include breakpoints.sm-up {
+    left: 8px;
+    position: absolute;
+    top: 26px;
+  }
+}
+
+.title {
+  @include typography.heading-1;
+
+  color: black;
+  hyphens: auto;
+  margin-top: 16px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  @include breakpoints.sm-up {
+    margin-top: 0;
+  }
+}
+
+.artist {
+  @include typography.heading-2;
+
+  color: black;
+  margin-top: 4px;
+}
+
+.album,
+.label,
+.releaseDate {
+  @include typography.heading-3;
+
+  color: var(--grey-03);
+}
+
+.album {
+  margin-top: 24px;
+}
+
+.label {
+  margin-top: 14px;
+}
+
+.releaseDate {
+  margin-top: 14px;
+}
+
+.value {
+  color: black;
+}
+
+.sticker {
+  background: transparent;
+  display: inline-block;
+  font-size: 0;
+  margin-top: 24px;
+  position: relative;
+
+  @include breakpoints.sm-up {
+    margin-top: 32px;
+  }
+}
+
+.stickerImg {
+  transition: transform 0.3s;
+
+  .sticker:hover &,
+  .sticker:focus & {
+    transform: rotateY(180deg);
+  }
+}
+
+.linkText {
+  @include accessibility.screen-reader-only;
+}

@@ -1,0 +1,25 @@
+@use "styles/breakpoints";
+@use "styles/typography";
+
+.time {
+  @include typography.heading-3;
+
+  @include breakpoints.sm-up {
+    left: 8px;
+    position: absolute;
+    top: 26px;
+  }
+}
+
+.copy {
+  @include typography.heading-1;
+
+  color: black;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+
+  @include breakpoints.sm-up {
+    padding-left: 80px;
+  }
+}

@@ -1,0 +1,107 @@
+@use "styles/breakpoints";
+
+@keyframes fall {
+  50% {
+    transform: translateY(-50%);
+  }
+}
+
+.root {
+  background: white;
+  bottom: 0;
+  font-size: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+.top,
+.left,
+.middle,
+.bottom {
+  background-color: black;
+  filter: grayscale(1);
+  object-fit: cover;
+  position: absolute;
+}
+
+.top {
+  bottom: 50%;
+  height: 50%;
+  width: 100%;
+
+  @include breakpoints.md-up {
+    bottom: unset;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 70%;
+  }
+}
+
+.bottom {
+  height: 50%;
+  padding-right: 15%;
+  top: 50%;
+  width: 100%;
+
+  @include breakpoints.md-up {
+    bottom: 0;
+    height: 40%;
+    padding-right: 0;
+    right: 0;
+    top: unset;
+    width: 30%;
+  }
+}
+
+.left {
+  height: 30%;
+  top: 0;
+  transform: translate(-70%);
+
+  @include breakpoints.md-up {
+    bottom: 0;
+    height: 40%;
+    left: 0;
+    top: unset;
+    transform: initial;
+    width: 20%;
+  }
+}
+
+.middle {
+  height: 40%;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-30%);
+
+  @include breakpoints.md-up {
+    height: 60%;
+    left: unset;
+    right: 0;
+    top: 0;
+    transform: initial;
+    width: 40%;
+  }
+}
+
+.elevens {
+  animation: fall 20s linear infinite;
+  color: white;
+  font-family: var(--font-family);
+  font-size: 200px;
+  left: 10%;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  transform: translateY(0);
+  will-change: transform;
+
+  @include breakpoints.md-up {
+    font-size: 400px;
+  }
+}

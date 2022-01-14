@@ -1,0 +1,31 @@
+@use "styles/breakpoints";
+@use "styles/typography";
+
+.root {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  @include typography.heading-2;
+
+  margin: 0;
+}
+
+.trackId {
+  display: none;
+
+  @include breakpoints.sm-up {
+    display: initial;
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 34px;
+
+  @include breakpoints.sm-up {
+    gap: 48px;
+  }
+}

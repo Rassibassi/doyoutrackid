@@ -1,0 +1,17 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:storybook/recommended",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["unused-imports", "@typescript-eslint"],
+  "rules": {
+    "no-unused-vars": 0, // off in favour of unused-imports plugin
+    "unused-imports/no-unused-imports": 2,
+    "unused-imports/no-unused-vars": 2,
+    "import/order": ["error", { "newlines-between": "always" }]
+  }
+}

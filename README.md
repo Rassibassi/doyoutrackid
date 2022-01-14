@@ -4,12 +4,11 @@ IDing the songs played on the do you radio show.
 
 https://doyou.world/
 
-http://doyoutrackid.s3-website.eu-central-1.amazonaws.com/
-
+https://doyoutrackid.com
 
 ## How to
 
-Frontend: Javascript in React, development and package mananger with `yarn`. Deployment with s3 static website hosting.
+Frontend: NextJS, development and package manager with `npm`. Deployment with Vercel.
 
 Backend: Python, with Chalice from AWS.
 

@@ -1,0 +1,53 @@
+@use "styles/typography";
+@use "styles/breakpoints";
+
+.root {
+  @keyframes rotate {
+    50% {
+      transform: rotate(var(--rotation-ani));
+    }
+  }
+
+  display: grid;
+  grid-template-columns: 1fr;
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+
+  @include breakpoints.sm-up {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoints.xl-up {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.empty {
+  @include typography.heading-1;
+
+  color: black;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.listItem {
+  animation: rotate var(--rotation-dur) ease-in-out infinite forwards;
+  margin: 0;
+  padding: 14%;
+  transform: rotate(var(--rotation));
+  transform-origin: calc(var(--transform-origin) + var(--translate)) 0;
+}
+
+.link {
+  clip-path: var(--short-banana-with-day-clip-path);
+  display: inline-block;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: var(--blue-01);
+  }
+}

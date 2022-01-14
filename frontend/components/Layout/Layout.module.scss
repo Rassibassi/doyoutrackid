@@ -1,0 +1,48 @@
+@use "styles/breakpoints";
+
+.root {
+  display: grid;
+  gap: var(--body-padding);
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-rows: 50px auto min-content;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  grid-area: header;
+  width: 100%;
+}
+
+.nav {
+  background: linear-gradient(180deg, white 0%, white 50%, rgb(255 255 255 / 0%) 100%);
+  padding: 10px var(--body-padding) 40px;
+  position: fixed;
+  transition: transform 0.3s;
+  width: 100%;
+  z-index: 1;
+
+  &.hide {
+    transform: translateY(calc(-100% + 40px));
+  }
+}
+
+.main {
+  grid-area: main;
+
+  .root.isElevenEleven & {
+    opacity: 0;
+  }
+}
+
+.footer {
+  grid-area: footer;
+  width: 100%;
+
+  .root.isElevenEleven & {
+    opacity: 0;
+  }
+}
