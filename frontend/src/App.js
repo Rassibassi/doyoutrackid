@@ -10,6 +10,7 @@ import Moment from 'moment';
 import DatePicker from 'react-datepicker';
 import { getDay, } from 'date-fns'
 
+import Confetti from './Confetti.js';
 import "react-datepicker/dist/react-datepicker.css";
 
 const App = () => {  
@@ -29,6 +30,7 @@ const Navigation = () => {
     setToggle(false);
   }
   return (
+    <>
     <nav className="navbar is-link">
       <div className="navbar-brand">
         <button
@@ -64,6 +66,7 @@ const Navigation = () => {
         </div>
       </div>
     </nav>
+    </>
   );
 }
 
@@ -158,6 +161,7 @@ const Live = () => {
           </div>
         </div>
       </section>
+      <div className='confetti'><Confetti /></div>
     </>
   )
 };
@@ -252,6 +256,7 @@ const Archive = (props) => {
           </div>
         </div>
       </section>
+      <div className='confetti'><Confetti /></div>
     </>
   );
 }
