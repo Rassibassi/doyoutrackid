@@ -11,7 +11,26 @@ const Footer = ({ className }: IFooterProps) => {
   return (
     <footer className={rootStyles.join(" ")}>
       <p className={styles.copy}>
-        Rassibassi X Erin Rimmer X jackhkmatthews -{" "}
+        <a
+          target="_blank"
+          href="https://github.com/Rassibassi"
+          rel="noreferrer"
+        >
+          Rassibassi
+        </a>{" "}
+        X{" "}
+        <a target="_blank" href="mailto:erinjrimmer@gmail.com" rel="noreferrer">
+          Erin Rimmer
+        </a>{" "}
+        X{" "}
+        <a
+          target="_blank"
+          href="mailto:jack@jackhkmatthews.com"
+          rel="noreferrer"
+        >
+          jackhkmatthews
+        </a>{" "}
+        -{" "}
         <a
           href="https://github.com/Rassibassi/doyoutrackid"
           target="_blank"
