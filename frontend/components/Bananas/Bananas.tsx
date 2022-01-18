@@ -22,7 +22,7 @@ const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
 
   return (
     <div className={rootStyles.join(" ")}>
-      <ol className={styles.list}>
+      <ul className={styles.list}>
         {BANANAS.map((_, index) => {
           const link = links[index];
           return (
@@ -55,7 +55,7 @@ const Bananas = ({ className, links = [], shouldJiggle }: IBananasProps) => {
             </li>
           );
         })}
-      </ol>
+      </ul>
     </div>
   );
 };

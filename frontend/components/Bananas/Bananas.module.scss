@@ -12,9 +12,12 @@
 }
 
 .list {
+  aspect-ratio: var(--padded-banana-aspect-ratio);
   display: inline-block;
   list-style: none;
   margin: 0;
+  max-height: 100%;
+  max-width: 100%;
   padding: 0;
   position: relative;
 }
