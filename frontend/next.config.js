@@ -1,13 +1,13 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { withSentryConfig } = require("@sentry/nextjs");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
 
 /** @type {import('next').NextConfig} */
-module.exports = withBundleAnalyzer({
+const moduleExports = withBundleAnalyzer({
   reactStrictMode: true,
   images: {
     domains: ["res.cloudinary.com"],
@@ -35,3 +35,9 @@ module.exports = withBundleAnalyzer({
     return config;
   },
 });
+
+const sentryWebpackPluginOptions = {
+  silent: true, // Suppresses all logs
+};
+
+module.exports = withSentryConfig(moduleExports, sentryWebpackPluginOptions);
