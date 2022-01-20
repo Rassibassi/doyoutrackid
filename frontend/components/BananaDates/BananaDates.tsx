@@ -19,47 +19,46 @@ const BananaDates = ({ dates, className }: IBananaDatesProps) => {
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
 
-  return (
-    <ul className={rootStyles.join(" ")}>
-      {!dates.length && (
-        <li className={styles.listItem}>
-          <p className={styles.empty}>
-            :(
-            <br />
-            There&apos;s nothing here
-          </p>
-        </li>
-      )}
-      {!!dates.length &&
-        dates.map((date, index) => (
-          <li
-            key={format(date, "dd-LL-yyyy")}
-            className={styles.listItem}
-            style={
-              {
-                "--rotation": ROTATION_DEGS[index % 5] + "deg",
-                "--rotation-ani": ROTATION_ANI_DEGS[index % 5] + "deg",
-                "--rotation-dur": ROTATION_DUR[index % 5] + "s",
-              } as React.CSSProperties
-            }
+  const emptyStyles = [styles.empty];
+  if (className) emptyStyles.push(className);
+
+  return !dates.length ? (
+    <p className={emptyStyles.join(" ")}>
+      :(
+      <br />
+      There&apos;s nothing here
+    </p>
+  ) : (
+    <ol className={rootStyles.join(" ")}>
+      {dates.map((date, index) => (
+        <li
+          key={format(date, "dd-LL-yyyy")}
+          className={styles.listItem}
+          style={
+            {
+              "--rotation": ROTATION_DEGS[index % 5] + "deg",
+              "--rotation-ani": ROTATION_ANI_DEGS[index % 5] + "deg",
+              "--rotation-dur": ROTATION_DUR[index % 5] + "s",
+            } as React.CSSProperties
+          }
+        >
+          <Link
+            href={`${ROUTES.get(ROUTE.tracks)?.url.pathname}/${format(
+              date,
+              "yyyy-LL-dd"
+            )}`}
+            passHref
           >
-            <Link
-              href={{
-                ...ROUTES.get(ROUTE.tracks)?.url,
-                query: { date: format(date, "yyyy-LL-dd") },
-              }}
-              passHref
-            >
-              <a className={styles.link}>
-                <DateBanana
-                  date={format(date, "dd/LL/yyyy")}
-                  day={format(date, "EEE")}
-                />
-              </a>
-            </Link>
-          </li>
-        ))}
-    </ul>
+            <a className={styles.link}>
+              <DateBanana
+                date={format(date, "dd/LL/yyyy")}
+                day={format(date, "EEE")}
+              />
+            </a>
+          </Link>
+        </li>
+      ))}
+    </ol>
   );
 };
 
