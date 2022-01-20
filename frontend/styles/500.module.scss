@@ -1,0 +1,21 @@
+@use "styles/breakpoints";
+@use "styles/typography";
+
+.title {
+  @include typography.heading-1;
+
+  align-items: center;
+  color: black;
+  display: flex;
+  height: 100%;
+  hyphens: auto;
+  justify-content: center;
+  margin-top: 16px;
+  overflow-wrap: break-word;
+  width: 100%;
+  word-break: break-word;
+
+  @include breakpoints.sm-up {
+    margin-top: 0;
+  }
+}
