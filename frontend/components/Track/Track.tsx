@@ -28,8 +28,8 @@ const Track = ({
   return (
     <div className={rootStyles.join(" ")}>
       <p className={styles.time}>{time}</p>
-      <h3 className={styles.title}>{title}</h3>
-      <h4 className={styles.artist}>{artist}</h4>
+      <h1 className={styles.title}>{title}</h1>
+      <h2 className={styles.artist}>{artist}</h2>
       <p className={styles.album}>
         Album: <span className={styles.value}>{album}</span>
       </p>
