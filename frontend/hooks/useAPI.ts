@@ -7,7 +7,8 @@ const fetcher = (url: string) => fetch(url).then((r) => r.json());
 export function useAPI(date: string) {
   const { data, error } = useSWR<ITrackResponse>(
     `${process.env.NEXT_PUBLIC_API_SERVICE_URL}/${date}`,
-    fetcher
+    fetcher,
+    { focusThrottleInterval: 60000 }
   );
 
   return {
