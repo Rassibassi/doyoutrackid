@@ -23,11 +23,11 @@ const BananaDates = ({ dates, className }: IBananaDatesProps) => {
   if (className) emptyStyles.push(className);
 
   return !dates.length ? (
-    <p className={emptyStyles.join(" ")}>
+    <h1 className={emptyStyles.join(" ")}>
       :(
       <br />
       There&apos;s nothing here
-    </p>
+    </h1>
   ) : (
     <ol className={rootStyles.join(" ")}>
       {dates.map((date, index) => (
