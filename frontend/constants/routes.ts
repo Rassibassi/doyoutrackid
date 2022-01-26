@@ -1,7 +1,5 @@
 import { UrlObject } from "url";
 
-import { TODAY_ROUTE_QUERY } from "./dates";
-
 export enum ROUTE {
   listen = "listen",
   home = "home",
@@ -51,9 +49,6 @@ export const ROUTES = new Map<ROUTE, IRoute>([
     {
       url: {
         pathname: "/tracks",
-        query: {
-          date: TODAY_ROUTE_QUERY,
-        },
       },
       label: "Today",
       sticker: {

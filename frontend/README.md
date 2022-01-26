@@ -32,3 +32,49 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## SSG, SSR and ISR
+
+Efforts have been made to prevent redundant calls to our BE tracks DB e.g. for track list in the past which will never update.
+
+### `pages/tracks/`
+
+All pages get data server-side and provide as fallback/initial data data to `useSWR`. This means all days will be SSR'd.
+
+Pages for days **before** the last build day fetch data once at build time and never again.
+
+Pages for days **between** the last build day and the date of request will fetch date server-side at lest once on first request and then never again. Their HTML and JSON is effectively statically generated on this request and cached.
+
+Pages for days **on** the date of request will fetch data server-side (60 debounce) using NextJS revalidation.
+
+Pages for days **after** the date of request will not fetch data server-side, instead return a 404 to be revalidated in the future.
+
+Only today's track list will also fetch data client side on mount and on focus (60 debounce).
+
+Although NextJS fetch cached JSON other statically generated pages.
+
+All other days rely solely on data fetched on the server or JSON cached by NextJS.
+
+#### `pages/tracks/[date].tsx`
+
+`getStaticPaths` will generate tracks pages for all past days (as of build day).
+
+These pages will always have correct data as track data for days in the past does not change. This data is available at build time and will never need to be updated.
+
+Hence `getStaticProps` is set to `revalidate: false` i.e. no Incremental Static Revalidation.
+
+Also, `Tracks.tsx` only fetches new data client-side for today's track list. i.e. no past days
+
+#### `pages/tracks/[[...date]].tsx`
+
+`getStaticPaths` paired with `[[...date]].tsx` catch all route and `getStaticProps => revalidate: true | false` will SSR tracks pages today (as of build day) and all future days.
+
+When SSR'ing, if malformed params will return 404 and not revalidate.
+
+When SSR'ing, if date in future of date of request, will return 404 but will revalidate as one day that future day will be today.
+
+When SSR'ing, if date between the date of last build and before the date of request will fetch data server-side once, cache HTML and JSON and not revalidate.
+
+When SSR'ing, if date the same as date of request, get data server-side (60 debounce) and return page.
+
+Also, `Tracks.tsx` only fetches new data client-side for today's track list. i.e. when date param is the same as request date.

@@ -1,25 +1,36 @@
-import { parseISO, format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { useContext } from "react";
 
-import Track from "../Track/Track";
-import { useAPI } from "../../hooks/useAPI";
-import { ITrack } from "../../constants/tracks";
 import { TODAY_API_QUERY } from "../../constants/dates";
+import { ITrack } from "../../constants/tracks";
+import { ActiveDate } from "../../contexts/activeDate";
 import { ElevenEleven } from "../../contexts/elevenEleven";
-import PlaceholderTrack from "../PlaceholderTrack/PlaceholderTrack";
+import { useAPI } from "../../hooks/useAPI";
 import { isElevenElevenBetween } from "../../utils";
+import PlaceholderTrack from "../PlaceholderTrack/PlaceholderTrack";
+import Track from "../Track/Track";
 
 import styles from "./Tracks.module.scss";
 
 interface ITracksProps {
   className?: string;
-  dateQuery: string;
 }
 
-const Tracks = ({ className, dateQuery }: ITracksProps) => {
-  const isToday = dateQuery === TODAY_API_QUERY;
-  const { tracks, isLoading, error } = useAPI(`archive/${dateQuery}`);
+const Tracks = ({ className }: ITracksProps) => {
+  const date = useContext(ActiveDate);
   const { setIsElevenEleven } = useContext(ElevenEleven);
+  const apiDateQuery = format(date, "dd/LL/yyyy");
+  const isToday = apiDateQuery === TODAY_API_QUERY;
+
+  // Will be provided with initial value from server (NextPages)
+  // Don't refetch data unless today
+  // Other track data handled server-side
+  const { tracks, isLoading } = useAPI(`/archive/${apiDateQuery}`, {
+    focusThrottleInterval: 60000,
+    revalidateIfStale: isToday,
+    revalidateOnFocus: isToday,
+    revalidateOnReconnect: isToday,
+  });
 
   const orderedTracks = isToday
     ? tracks?.reduce((a, b) => [b].concat(a), [] as ITrack[])
@@ -30,9 +41,7 @@ const Tracks = ({ className, dateQuery }: ITracksProps) => {
 
   return (
     <ul className={rootStyles.join(" ")}>
-      {!!tracks?.length &&
-        !isLoading &&
-        !error &&
+      {!!tracks?.length ? (
         orderedTracks?.map(
           (
             {
@@ -76,8 +85,8 @@ const Tracks = ({ className, dateQuery }: ITracksProps) => {
                 )}
             </li>
           )
-        )}
-      {(!tracks?.length || error || isLoading) && (
+        )
+      ) : (
         <li className={styles.listItem}>
           <PlaceholderTrack isLoading={isLoading} />
         </li>

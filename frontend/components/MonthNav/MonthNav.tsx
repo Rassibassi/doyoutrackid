@@ -24,13 +24,13 @@ const MonthNav = ({ activeMonth, activeYear, className }: IMonthNavProps) => {
           <h2 className={styles.year}>{year.year}</h2>
           <ul className={styles.navList}>
             {Array.from(year.months.values()).map((month) => (
-              <li key={month.month} className={styles.navItem}>
+              <li key={month.path} className={styles.navItem}>
                 <Link
                   href={{
                     ...ROUTES.get(ROUTE.archive)?.url,
                     query: {
                       year: `${year.year}`,
-                      month: `${month.month}`,
+                      month: `${month.path}`,
                     },
                   }}
                   passHref
@@ -38,11 +38,11 @@ const MonthNav = ({ activeMonth, activeYear, className }: IMonthNavProps) => {
                   <PillCta
                     className={styles.pill}
                     isActive={
-                      year.year === activeYear && month.month === activeMonth
+                      year.year === activeYear && month.path === activeMonth
                     }
                     as={EPolyAs.anchor}
                   >
-                    {month.month}
+                    {month.label}
                   </PillCta>
                 </Link>
               </li>

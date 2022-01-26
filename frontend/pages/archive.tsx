@@ -1,10 +1,9 @@
 import { NextPage } from "next";
-import { format } from "date-fns";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Head from "next/head";
 
-import { ARCHIVE, TODAY } from "../constants/dates";
+import { ARCHIVE, TODAY_MONTH, TODAY_YEAR } from "../constants/dates";
 import { ROUTE, ROUTES } from "../constants/routes";
 import styles from "../styles/archive.module.scss";
 import MonthNav from "../components/MonthNav/MonthNav";
@@ -28,8 +27,8 @@ const Archive: NextPage = () => {
         {
           ...ROUTES.get(ROUTE.archive)?.url,
           query: {
-            month: format(TODAY, "LLLL"),
-            year: format(TODAY, "yyyy"),
+            month: TODAY_MONTH.toLocaleLowerCase(),
+            year: TODAY_YEAR,
           },
         },
         undefined,
@@ -38,7 +37,7 @@ const Archive: NextPage = () => {
     }
   }, [isValidQuery, isReady, replace]);
 
-  return isValidQuery ? (
+  return (
     <div className={styles.root}>
       <Head>
         <title>DO!! YOU!!! TRACK ID - Archive</title>
@@ -50,15 +49,13 @@ const Archive: NextPage = () => {
           activeYear={activeYear}
         />
       </div>
-      <BananaDates
-        dates={ARCHIVE.get(activeYear)?.months.get(activeMonth)?.days || []}
-        className={styles.bananaDates}
-      />
+      {isValidQuery && (
+        <BananaDates
+          dates={ARCHIVE.get(activeYear)?.months.get(activeMonth)?.days || []}
+          className={styles.bananaDates}
+        />
+      )}
     </div>
-  ) : (
-    <Head>
-      <title>DO!! YOU!!! TRACK ID - Archive</title>
-    </Head>
   );
 };
 
