@@ -43,11 +43,10 @@ const BananaDates = ({ dates, className }: IBananaDatesProps) => {
           }
         >
           <Link
-            href={`${ROUTES.get(ROUTE.tracks)?.url.pathname}/${format(
-              date,
-              "yyyy-LL-dd"
-            )}`}
-            passHref
+            href={{
+              ...ROUTES.get(ROUTE.tracks)?.url,
+              query: { date: format(date, "yyyy-LL-dd") },
+            }}
           >
             <a className={styles.link}>
               <DateBanana
