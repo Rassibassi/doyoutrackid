@@ -5,17 +5,20 @@
 }
 
 .bananas {
-  max-width: 250px;
+  max-width: 275px;
   position: fixed;
-  top: min(100px, 35vw);
-  width: 40%;
+  top: min(70px, 35vw);
+  width: 45%;
+  transform: rotate(314deg);
+  left: -4px;
+  z-index: var(--z-index-tracks-bananas);
 
   @include breakpoints.sm-up {
-    left: 5vw;
+    left: 4vw;
   }
 
   @include breakpoints.md-up {
-    left: 10vw;
+    left: 9vw;
   }
 }
 

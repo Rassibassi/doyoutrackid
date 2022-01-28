@@ -9,11 +9,6 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 /** @type {import('next').NextConfig} */
 const moduleExports = withBundleAnalyzer({
   reactStrictMode: true,
-  images: {
-    domains: ["res.cloudinary.com"],
-    loader: "cloudinary",
-    path: "https://res.cloudinary.com/dmqr7syhe/",
-  },
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
   },

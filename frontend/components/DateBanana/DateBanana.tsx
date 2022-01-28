@@ -1,11 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import {
-  BANANA_IMAGES,
-  BANANA_NAME,
-  IBananaImage,
-} from "../../constants/bananas";
+import Banana from "../../public/banana.webp";
 
 import styles from "./DateBanana.module.scss";
 
@@ -14,8 +10,6 @@ interface IDateBananaProps {
   date: string;
   day: string;
 }
-
-const BANANA = BANANA_IMAGES.get(BANANA_NAME.short) as IBananaImage;
 
 const DateBanana = ({ className, date, day }: IDateBananaProps) => {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -28,9 +22,7 @@ const DateBanana = ({ className, date, day }: IDateBananaProps) => {
     <div className={rootStyles.join(" ")}>
       <Image
         className={styles.banana}
-        width={BANANA.width}
-        height={BANANA.height}
-        src={BANANA.src}
+        src={Banana}
         priority
         onLoadingComplete={() => setHasLoaded(true)}
         alt="Banana!"

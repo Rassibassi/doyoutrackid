@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import ListenNow from "../../public/sticker_listen_now.webp";
+
 import styles from "./Track.module.scss";
 
 interface ITrackProps {
@@ -47,10 +49,10 @@ const Track = ({
       >
         <Image
           className={styles.stickerImg}
-          src="v1640336995/doyoutrackid/sticker_listen_now_iqgl4g.png"
           height="81"
           width="100"
-          alt="Banana sticker"
+          src={ListenNow}
+          alt="List now sticker"
         />
         <span className={styles.linkText}>Listen</span>
       </a>

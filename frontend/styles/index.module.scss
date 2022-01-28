@@ -9,23 +9,17 @@
 
 .bananaNav {
   left: 50%;
-  max-height: 600px;
-  max-width: 700px;
+  max-height: 100%;
   position: absolute;
   top: 50%;
-  transform:
-    translate(-45%, -40%) rotate(
-      45deg
-    );
-  transform-origin: center;
+  transform: translate(-45%, -50%);
   width: 130%;
 
   @include breakpoints.sm-up {
-    height: 80%;
-    transform:
-      translate(-55%, -40%) rotate(
-        45deg
-      );
-    width: initial;
+    width: 100%;
+  }
+
+  @include breakpoints.md-up {
+    max-width: 900px;
   }
 }

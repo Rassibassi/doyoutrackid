@@ -89,9 +89,9 @@ export const ROUTES = new Map<ROUTE, IRoute>([
 ]);
 
 export const BANANA_NAV_LINKS = [
-  ROUTES.get(ROUTE.listen),
-  ROUTES.get(ROUTE.today),
   ROUTES.get(ROUTE.archive),
+  ROUTES.get(ROUTE.today),
+  ROUTES.get(ROUTE.listen),
 ] as IRoute[];
 
 export const NAV_BAR_LINKS = [
