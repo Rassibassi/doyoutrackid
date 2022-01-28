@@ -26,6 +26,7 @@
   top: min(275px, 100vw);
   transform: translateY(-50%) rotate(283deg);
   width: 40%;
+  z-index: var(--z-index-tracks-banana);
 
   @include breakpoints.sm-up {
     right: 10vw;
@@ -41,6 +42,8 @@
 
   margin-bottom: 100px;
   margin-top: var(--margin-top);
+  position: relative;
+  z-index: var(--z-index-tracks-list);
 
   @include breakpoints.sm-up {
     margin: var(--margin-top) 10% 0;

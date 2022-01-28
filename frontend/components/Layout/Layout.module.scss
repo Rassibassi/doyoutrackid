@@ -18,12 +18,17 @@
 }
 
 .nav {
-  background: linear-gradient(180deg, white 0%, white 50%, rgb(255 255 255 / 0%) 100%);
+  background: linear-gradient(
+    180deg,
+    white 0%,
+    white 50%,
+    rgb(255 255 255 / 0%) 100%
+  );
   padding: 10px var(--body-padding) 40px;
   position: fixed;
   transition: transform 0.3s;
   width: 100%;
-  z-index: 1;
+  z-index: var(--z-index-navbar);
 
   &.hide {
     transform: translateY(calc(-100% + 40px));
