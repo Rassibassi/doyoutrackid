@@ -1,11 +1,5 @@
-import styles from "../styles/500.module.scss";
+import Error from "../components/Error/Error";
 
 export default function Custom500() {
-  return (
-    <h1 className={styles.title}>
-      :&apos;(
-      <br />
-      500 Error
-    </h1>
-  );
+  return <Error title="Sorry" body="Something went wrong, try again?" />;
 }

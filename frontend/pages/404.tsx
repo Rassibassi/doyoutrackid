@@ -1,11 +1,5 @@
-import styles from "../styles/404.module.scss";
+import Error from "../components/Error/Error";
 
 export default function Custom404() {
-  return (
-    <h1 className={styles.title}>
-      :&apos;(
-      <br />
-      404 Error
-    </h1>
-  );
+  return <Error title="Sorry" body="That's gone missing, try again?" />;
 }
