@@ -1,10 +1,12 @@
 @use "styles/breakpoints";
+@use "styles/colorSchemes";
 
 :root {
   --body-padding: 10px;
-  --grey-01: #131313;
-  --grey-02: #b8b8b8;
-  --grey-03: #979797;
+  --grey-01: hsl(0, 0%, 7%);
+  --grey-02: hsl(0, 0%, 40%);
+  --grey-03: hsl(0, 0%, 60%);
+  --grey-04: hsl(0, 0%, 72%);
   --yellow-01: #f4dd7c;
   --blue-01: #4770cf;
   --font-family: "Arial Narrow", arial;
@@ -32,70 +34,6 @@
     --body-padding: 20px;
   }
 
-  --padded-banana-aspect-ratio: 7/6;
-  --padded-banana-clip-path: polygon(
-    9% 10%,
-    12% 16%,
-    14% 24%,
-    15% 31%,
-    18% 42%,
-    21% 50%,
-    25% 58%,
-    30% 64%,
-    35% 69%,
-    41% 73%,
-    49% 77%,
-    59% 80%,
-    66% 83%,
-    69% 86%,
-    67% 91%,
-    63% 96%,
-    55% 100%,
-    45% 100%,
-    34% 100%,
-    28% 97%,
-    21% 94%,
-    14% 88%,
-    8% 80%,
-    3% 68%,
-    0% 54%,
-    0% 41%,
-    0% 28%,
-    2% 19%,
-    5% 12%
-  );
-  --short-banana-clip-path: polygon(
-    17% 2%,
-    22% 19%,
-    29% 37%,
-    38% 51%,
-    49% 61%,
-    63% 70%,
-    69% 72%,
-    73% 73%,
-    79% 75%,
-    96% 79%,
-    100% 82%,
-    100% 85%,
-    100% 88%,
-    97% 94%,
-    89% 99%,
-    79% 100%,
-    63% 100%,
-    51% 100%,
-    37% 96%,
-    20% 85%,
-    6% 69%,
-    1% 54%,
-    0% 41%,
-    0% 28%,
-    0% 21%,
-    2% 12%,
-    4% 5%,
-    8% 0%,
-    12% 0%,
-    16% 0%
-  );
   --short-banana-with-day-clip-path: polygon(
     17% 2%,
     22% 19%,
@@ -138,6 +76,11 @@ body {
   min-height: 100%;
   padding: 0;
   width: 100%;
+  background: white;
+
+  @include colorSchemes.dark {
+    background: black;
+  }
 }
 
 body.noScroll {

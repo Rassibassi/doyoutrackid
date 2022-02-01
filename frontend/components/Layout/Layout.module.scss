@@ -1,4 +1,5 @@
 @use "styles/breakpoints";
+@use "styles/colorSchemes";
 
 .root {
   display: grid;
@@ -32,6 +33,15 @@
 
   &.hide {
     transform: translateY(calc(-100% + 40px));
+  }
+
+  @include colorSchemes.dark {
+    background: linear-gradient(
+      180deg,
+      black 0%,
+      black 50%,
+      rgba(0 0 0 / 0%) 100%
+    );
   }
 }
 

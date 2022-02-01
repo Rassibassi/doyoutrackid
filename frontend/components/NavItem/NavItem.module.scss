@@ -1,5 +1,6 @@
 @use "styles/typography";
 @use "styles/ctas";
+@use "styles/colorSchemes";
 
 .root {
   @include ctas.anchor-reset;
@@ -9,6 +10,10 @@
   cursor: pointer;
   padding: 7px 0;
   position: relative;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 
   &::after {
     background-color: #222;
@@ -23,6 +28,10 @@
     transform-origin: 100% 50%;
     transition: transform 0.3s cubic-bezier(0.52, 0.14, 0.16, 1.01);
     will-change: transform;
+
+    @include colorSchemes.dark {
+      background-color: white;
+    }
   }
 
   &:hover,

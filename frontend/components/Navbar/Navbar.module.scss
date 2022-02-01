@@ -1,5 +1,6 @@
 @use "styles/breakpoints";
 @use "styles/typography";
+@use "styles/colorSchemes";
 
 .root {
   align-items: center;
@@ -11,6 +12,11 @@
   @include typography.heading-2;
 
   margin: 0;
+  color: black;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 }
 
 .trackId {

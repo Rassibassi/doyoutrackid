@@ -1,5 +1,6 @@
 @use "styles/breakpoints";
 @use "styles/typography";
+@use "styles/colorSchemes";
 
 .root {
   list-style: none;
@@ -26,6 +27,12 @@
 
 .btn {
   opacity: 0.2;
+  color: black;
+
+  @include colorSchemes.dark {
+    opacity: 0.3;
+    color: white;
+  }
 
   &:hover {
     cursor: pointer;

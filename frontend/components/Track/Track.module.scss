@@ -1,10 +1,14 @@
 @use "styles/breakpoints";
 @use "styles/accessibility";
 @use "styles/typography";
+@use "styles/colorSchemes";
 
 .root {
   perspective: 500px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
   @include breakpoints.sm-up {
     padding-left: 80px;
@@ -13,6 +17,13 @@
 
 .time {
   @include typography.heading-3;
+
+  color: black;
+  display: inline-block;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 
   @include breakpoints.sm-up {
     left: 8px;
@@ -29,6 +40,11 @@
   margin-top: 16px;
   overflow-wrap: break-word;
   word-break: break-word;
+  display: inline-block;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 
   @include breakpoints.sm-up {
     margin-top: 0;
@@ -40,6 +56,11 @@
 
   color: black;
   margin-top: 4px;
+  display: inline-block;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 }
 
 .album,
@@ -47,7 +68,12 @@
 .releaseDate {
   @include typography.heading-3;
 
-  color: var(--grey-03);
+  color: var(--grey-02);
+  display: inline-block;
+
+  @include colorSchemes.dark {
+    color: var(--grey-03);
+  }
 }
 
 .album {
@@ -64,6 +90,11 @@
 
 .value {
   color: black;
+  display: inline-block;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 }
 
 .sticker {

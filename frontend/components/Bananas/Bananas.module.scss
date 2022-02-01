@@ -1,6 +1,7 @@
 @use "styles/accessibility";
 @use "styles/ctas";
 @use "styles/breakpoints";
+@use "styles/colorSchemes";
 
 @keyframes rotate {
   50% {
@@ -11,6 +12,10 @@
 .root {
   display: block;
   margin: 0 auto;
+
+  @include colorSchemes.dark {
+    filter: brightness(0.9);
+  }
 }
 
 .link {

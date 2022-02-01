@@ -1,5 +1,6 @@
 @use "styles/breakpoints";
 @use "styles/typography";
+@use "styles/colorSchemes";
 
 .time {
   @include typography.heading-3;
@@ -18,6 +19,10 @@
   hyphens: auto;
   overflow-wrap: break-word;
   word-break: break-word;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 
   @include breakpoints.sm-up {
     padding-left: 80px;

@@ -1,5 +1,6 @@
 @use "styles/breakpoints";
 @use "styles/typography";
+@use "styles/colorSchemes";
 
 .root {
   padding: 28px;
@@ -34,6 +35,11 @@
 
   width: 100%;
   margin-top: 30px;
+  color: black;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 
   @include breakpoints.sm-up {
     margin-top: 0;
@@ -45,6 +51,11 @@
 
   width: 100%;
   margin-top: 4px;
+  color: black;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 
   @include breakpoints.sm-up {
     margin-top: 24px;
