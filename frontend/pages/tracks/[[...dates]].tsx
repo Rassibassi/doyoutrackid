@@ -2,7 +2,6 @@ import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { format, isAfter, isBefore, parseISO } from "date-fns";
 import { SWRConfig } from "swr";
 
-import { TODAY_ISO } from "../../constants/dates";
 import { ITrackResponse } from "../../constants/tracks";
 import TracksScreen from "../../components/TracksScreen/TracksScreen";
 import { ActiveDate } from "../../contexts/activeDate";
@@ -27,11 +26,12 @@ const TracksPage: NextPage<ITracksPageProps> = ({ dateISO, fallback }) => {
 
 export default TracksPage;
 
-// Dates in past of build date handled by pages/tracks/[date].tsx
-// Only dates with dynamic data (today and future) handled here
+// Dates in past of build date (static data) handled by pages/tracks/[date].tsx
+// Day of request (dynamic data) handled by pages/tracks/today.tsx
+// Dates in future of build and not date of request (dynamic data) handled here
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [{ params: { dates: [TODAY_ISO] } }, { params: { dates: [] } }],
+    paths: [{ params: { dates: [] } }],
     fallback: "blocking",
   };
 };
@@ -41,8 +41,7 @@ export const getStaticProps: GetStaticProps<ITracksPageProps> = async ({
 }) => {
   const todayDate = parseISO(format(new Date(), "yyyy-LL-dd"));
 
-  // If no date params '/' use TODAY_ISO
-  const dateParams = params?.dates ? (params?.dates as string[]) : [TODAY_ISO];
+  const dateParams = (params?.dates as string[]) || [];
 
   // Will be 'Invalid Date' if malformed ISO provided
   const requestedDate = parseISO(dateParams[0]) as string | Date;
@@ -62,7 +61,7 @@ export const getStaticProps: GetStaticProps<ITracksPageProps> = async ({
   }
 
   // Future dates should return 404
-  // But soon future dates will be 'today' / 'past'
+  // But soon future dates will be 'past'
   // so should revalidate
   if (isAfter(requestedDate, todayDate)) {
     return {
@@ -83,7 +82,7 @@ export const getStaticProps: GetStaticProps<ITracksPageProps> = async ({
       },
       dateISO: dateParams[0],
     },
-    // If requested date is in the past, send the above date but don't revalidate
+    // If requested date is in the past, send the above data but don't revalidate
     // as track data will never change
     revalidate: isBefore(requestedDate, todayDate) ? false : 60,
   };

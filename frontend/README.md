@@ -55,6 +55,12 @@ Although NextJS fetch cached JSON other statically generated pages.
 
 All other days rely solely on data fetched on the server or JSON cached by NextJS.
 
+#### `pages/tracks/today.tsx`
+
+`getStaticProps => revalidate: 60` will SSR track page for today at most every 60 seconds.
+
+Also, `Tracks.tsx` only fetches new data client-side for today's track list. i.e. when date param is the same as request date.
+
 #### `pages/tracks/[date].tsx`
 
 `getStaticPaths` will generate tracks pages for all past days (as of build day).
@@ -67,14 +73,10 @@ Also, `Tracks.tsx` only fetches new data client-side for today's track list. i.e
 
 #### `pages/tracks/[[...date]].tsx`
 
-`getStaticPaths` paired with `[[...date]].tsx` catch all route and `getStaticProps => revalidate: true | false` will SSR tracks pages today (as of build day) and all future days.
+`getStaticPaths` paired with `[[...date]].tsx` catch all route and `getStaticProps => revalidate: true | false` will SSR tracks pages all future days.
 
 When SSR'ing, if malformed params will return 404 and not revalidate.
 
-When SSR'ing, if date in future of date of request, will return 404 but will revalidate as one day that future day will be today.
+When SSR'ing, if date in future of date of request, will return 404 but will revalidate as one day that future day will be in the past.
 
 When SSR'ing, if date between the date of last build and before the date of request will fetch data server-side once, cache HTML and JSON and not revalidate.
-
-When SSR'ing, if date the same as date of request, get data server-side (60 debounce) and return page.
-
-Also, `Tracks.tsx` only fetches new data client-side for today's track list. i.e. when date param is the same as request date.

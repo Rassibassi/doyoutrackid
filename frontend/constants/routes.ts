@@ -48,7 +48,7 @@ export const ROUTES = new Map<ROUTE, IRoute>([
     ROUTE.today,
     {
       url: {
-        pathname: "/tracks",
+        pathname: "/tracks/today",
       },
       label: "Today",
       sticker: {

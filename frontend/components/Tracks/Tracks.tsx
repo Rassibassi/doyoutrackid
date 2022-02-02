@@ -2,7 +2,6 @@ import { format, parseISO } from "date-fns";
 import { useContext } from "react";
 
 import { TODAY_API_QUERY } from "../../constants/dates";
-import { ITrack } from "../../constants/tracks";
 import { ActiveDate } from "../../contexts/activeDate";
 import { ElevenEleven } from "../../contexts/elevenEleven";
 import { useAPI } from "../../hooks/useAPI";
@@ -17,24 +16,21 @@ interface ITracksProps {
 }
 
 const Tracks = ({ className }: ITracksProps) => {
-  const date = useContext(ActiveDate);
   const { setIsElevenEleven } = useContext(ElevenEleven);
-  const apiDateQuery = format(date, "dd/LL/yyyy");
-  const isToday = apiDateQuery === TODAY_API_QUERY;
+  const activeDate = useContext(ActiveDate);
+  const activeAPIDate = format(activeDate, "dd/LL/yyyy");
+  const isToday = activeAPIDate === TODAY_API_QUERY;
+  const apiRoute = isToday ? "/today" : `/archive/${activeAPIDate}`;
 
   // Will be provided with initial value from server (NextPages)
   // Don't refetch data unless today
   // Other track data handled server-side
-  const { tracks, isLoading } = useAPI(`/archive/${apiDateQuery}`, {
+  const { tracks, isLoading } = useAPI(apiRoute, {
     focusThrottleInterval: 60000,
     revalidateIfStale: isToday,
     revalidateOnFocus: isToday,
     revalidateOnReconnect: isToday,
   });
-
-  const orderedTracks = isToday
-    ? tracks?.reduce((a, b) => [b].concat(a), [] as ITrack[])
-    : tracks;
 
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
@@ -42,7 +38,7 @@ const Tracks = ({ className }: ITracksProps) => {
   return (
     <ul className={rootStyles.join(" ")}>
       {!!tracks?.length ? (
-        orderedTracks?.map(
+        tracks?.map(
           (
             {
               played_datetime,
@@ -69,9 +65,9 @@ const Tracks = ({ className }: ITracksProps) => {
                 time={format(parseISO(played_datetime), "HH:mm")}
                 title={title}
               />
-              {orderedTracks[i + 1] &&
+              {tracks[i + 1] &&
                 isElevenElevenBetween(
-                  parseISO(orderedTracks[i + 1].played_datetime),
+                  parseISO(tracks[i + 1].played_datetime),
                   parseISO(played_datetime)
                 ) && (
                   <p className={styles.elevenEleven}>
