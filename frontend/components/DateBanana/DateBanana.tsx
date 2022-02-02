@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import Banana from "../../public/banana.webp";
+import Banana from "../../public/banana_no_blur.webp";
 
 import styles from "./DateBanana.module.scss";
 

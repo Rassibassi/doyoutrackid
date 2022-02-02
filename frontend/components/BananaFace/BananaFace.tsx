@@ -1,4 +1,4 @@
-import Banana from "../../public/banana.webp";
+import Banana from "../../public/banana_no_blur.webp";
 
 import styles from "./BananaFace.module.scss";
 
