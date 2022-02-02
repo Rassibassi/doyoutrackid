@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { IRoute } from "../../constants/routes";
-import Banana from "../../public/banana.webp";
+import Banana from "../../public/banana_no_blur.webp";
 import StickerArchive from "../../public/sticker_archive.webp";
 import StickerToday from "../../public/sticker_today.webp";
 import StickerDoYou from "../../public/sticker_do_you.webp";
