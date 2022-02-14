@@ -21,7 +21,7 @@ const ElevenElevenOverlay = ({ className }: { className?: string }) => {
   return (
     <div
       className={rootStyles.join(" ")}
-      onClick={() => setIsElevenEleven((prev) => !prev)}
+      onClick={() => setIsElevenEleven(false)}
     >
       <video
         loop
