@@ -1,3 +1,5 @@
+@use "styles/breakpoints";
+
 .root {
   height: 100%;
   overflow: hidden;
@@ -7,11 +9,17 @@
 
 .bananaNav {
   left: 50%;
-  margin: 0 auto;
-  max-width: 700px;
+  max-height: 100%;
   position: absolute;
-  top: 60%;
-  transform: rotate(45deg) translate(-50%, -50%);
-  transform-origin: 10% 10%;
+  top: 50%;
+  transform: translate(-45%, -50%);
   width: 130%;
+
+  @include breakpoints.sm-up {
+    width: 100%;
+  }
+
+  @include breakpoints.md-up {
+    max-width: 900px;
+  }
 }

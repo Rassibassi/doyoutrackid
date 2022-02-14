@@ -1,0 +1,9 @@
+@use "styles/colorSchemes";
+
+.eye {
+  fill: black;
+
+  @include colorSchemes.dark {
+    fill: white;
+  }
+}

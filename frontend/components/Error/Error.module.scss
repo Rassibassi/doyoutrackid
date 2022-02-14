@@ -1,0 +1,63 @@
+@use "styles/breakpoints";
+@use "styles/typography";
+@use "styles/colorSchemes";
+
+.root {
+  padding: 28px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  @include breakpoints.sm-up {
+    flex-direction: row;
+    gap: 20%;
+  }
+}
+
+.face {
+  width: 90%;
+  max-width: 350px;
+
+  @include breakpoints.md-up {
+    max-width: 450px;
+  }
+}
+
+.copy {
+  max-width: 400px;
+}
+
+.title {
+  @include typography.heading-1;
+
+  width: 100%;
+  margin-top: 30px;
+  color: black;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
+
+  @include breakpoints.sm-up {
+    margin-top: 0;
+  }
+}
+
+.body {
+  @include typography.heading-2;
+
+  width: 100%;
+  margin-top: 4px;
+  color: black;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
+
+  @include breakpoints.sm-up {
+    margin-top: 24px;
+  }
+}

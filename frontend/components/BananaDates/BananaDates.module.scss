@@ -1,5 +1,6 @@
 @use "styles/typography";
 @use "styles/breakpoints";
+@use "styles/colorSchemes";
 
 .root {
   @keyframes rotate {
@@ -30,7 +31,12 @@
   color: black;
   hyphens: auto;
   overflow-wrap: break-word;
+  padding: 14%;
   word-break: break-word;
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 }
 
 .listItem {

@@ -1,21 +1,25 @@
 @use "styles/breakpoints";
+@use "styles/colorSchemes";
 
 .root {
   padding: var(--body-padding);
 }
 
 .bananas {
-  max-width: 250px;
+  max-width: 275px;
   position: fixed;
-  top: min(100px, 35vw);
-  width: 40%;
+  top: min(70px, 35vw);
+  width: 45%;
+  transform: rotate(314deg);
+  left: -4px;
+  z-index: var(--z-index-tracks-bananas);
 
   @include breakpoints.sm-up {
-    left: 5vw;
+    left: 4vw;
   }
 
   @include breakpoints.md-up {
-    left: 10vw;
+    left: 9vw;
   }
 }
 
@@ -24,12 +28,9 @@
   position: fixed;
   right: 30px;
   top: min(275px, 100vw);
-  transform:
-    translateY(-50%)
-    rotate(
-      283deg
-    );
+  transform: translateY(-50%) rotate(283deg);
   width: 40%;
+  z-index: var(--z-index-tracks-banana);
 
   @include breakpoints.sm-up {
     right: 10vw;
@@ -45,8 +46,14 @@
 
   margin-bottom: 100px;
   margin-top: var(--margin-top);
+  position: relative;
+  z-index: var(--z-index-tracks-list);
 
   @include breakpoints.sm-up {
+    margin: var(--margin-top) 10% 0;
+  }
+
+  @include breakpoints.md-up {
     margin: var(--margin-top) 20% 0;
   }
 }

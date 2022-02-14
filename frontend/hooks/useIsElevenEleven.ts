@@ -9,7 +9,8 @@ export function useIsElevenEleven(): [
 ] {
   const [isElevenEleven, setIsElevenEleven] = useState(false);
 
-  if (isWithinInterval(TODAY, ELEVEN_ELEVEN_INTERVAL)) {
+  // For first render e.g. server side
+  if (!isElevenEleven && isWithinInterval(TODAY, ELEVEN_ELEVEN_INTERVAL)) {
     setIsElevenEleven(true);
   }
 

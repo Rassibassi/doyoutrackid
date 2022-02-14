@@ -1,4 +1,5 @@
 @use "styles/typography";
+@use "styles/colorSchemes";
 
 .root {
   max-width: 472px;
@@ -18,11 +19,11 @@
   left: 80%;
   position: absolute;
   top: 69%;
-  transform:
-    translate(-50%, -50%)
-    rotate(
-      15deg
-    );
+  transform: translate(-50%, -50%) rotate(15deg);
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 }
 
 .date {
@@ -32,11 +33,7 @@
   left: 34%;
   position: absolute;
   top: 65%;
-  transform:
-    translate(-50%, -50%)
-    rotate(
-      45deg
-    );
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .banana {
@@ -45,4 +42,8 @@
   font-size: 0;
   pointer-events: none;
   user-select: none;
+
+  @include colorSchemes.dark {
+    filter: brightness(0.9);
+  }
 }

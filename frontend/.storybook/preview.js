@@ -18,6 +18,7 @@ function normalizeSrc(src) {
   return src[0] === "/" ? src.slice(1) : src;
 }
 
+// TODO(jack.matthews): figure out how to get images in storybook
 function cloudinaryLoader({ root, src, width, quality }) {
   // Demo: https://res.cloudinary.com/demo/image/upload/w_300,c_limit,q_auto/turtles.jpg
   const params = [

@@ -1,39 +1,44 @@
-import { parseISO, format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { useContext } from "react";
 
-import Track from "../Track/Track";
-import { useAPI } from "../../hooks/useAPI";
-import { ITrack } from "../../constants/tracks";
 import { TODAY_API_QUERY } from "../../constants/dates";
+import { ActiveDate } from "../../contexts/activeDate";
 import { ElevenEleven } from "../../contexts/elevenEleven";
-import PlaceholderTrack from "../PlaceholderTrack/PlaceholderTrack";
+import { useAPI } from "../../hooks/useAPI";
 import { isElevenElevenBetween } from "../../utils";
+import PlaceholderTrack from "../PlaceholderTrack/PlaceholderTrack";
+import Track from "../Track/Track";
 
 import styles from "./Tracks.module.scss";
 
 interface ITracksProps {
   className?: string;
-  dateQuery: string;
 }
 
-const Tracks = ({ className, dateQuery }: ITracksProps) => {
-  const isToday = dateQuery === TODAY_API_QUERY;
-  const { tracks, isLoading, error } = useAPI(`archive/${dateQuery}`);
+const Tracks = ({ className }: ITracksProps) => {
   const { setIsElevenEleven } = useContext(ElevenEleven);
+  const activeDate = useContext(ActiveDate);
+  const activeAPIDate = format(activeDate, "dd/LL/yyyy");
+  const isToday = activeAPIDate === TODAY_API_QUERY;
+  const apiRoute = isToday ? "/today" : `/archive/${activeAPIDate}`;
 
-  const orderedTracks = isToday
-    ? tracks?.reduce((a, b) => [b].concat(a), [] as ITrack[])
-    : tracks;
+  // Will be provided with initial value from server (NextPages)
+  // Don't refetch data unless today
+  // Other track data handled server-side
+  const { tracks, isLoading } = useAPI(apiRoute, {
+    focusThrottleInterval: 60000,
+    revalidateIfStale: isToday,
+    revalidateOnFocus: isToday,
+    revalidateOnReconnect: isToday,
+  });
 
   const rootStyles = [styles.root];
   if (className) rootStyles.push(className);
 
   return (
     <ul className={rootStyles.join(" ")}>
-      {!!tracks?.length &&
-        !isLoading &&
-        !error &&
-        orderedTracks?.map(
+      {!!tracks?.length ? (
+        tracks?.map(
           (
             {
               played_datetime,
@@ -60,9 +65,9 @@ const Tracks = ({ className, dateQuery }: ITracksProps) => {
                 time={format(parseISO(played_datetime), "HH:mm")}
                 title={title}
               />
-              {orderedTracks[i + 1] &&
+              {tracks[i + 1] &&
                 isElevenElevenBetween(
-                  parseISO(orderedTracks[i + 1].played_datetime),
+                  parseISO(tracks[i + 1].played_datetime),
                   parseISO(played_datetime)
                 ) && (
                   <p className={styles.elevenEleven}>
@@ -76,8 +81,8 @@ const Tracks = ({ className, dateQuery }: ITracksProps) => {
                 )}
             </li>
           )
-        )}
-      {(!tracks?.length || error || isLoading) && (
+        )
+      ) : (
         <li className={styles.listItem}>
           <PlaceholderTrack isLoading={isLoading} />
         </li>

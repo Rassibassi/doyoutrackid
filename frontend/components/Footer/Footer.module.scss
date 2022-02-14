@@ -1,8 +1,14 @@
+@use "styles/colorSchemes";
+
 .root {
   align-items: center;
   color: black;
   display: flex;
   padding: var(--body-padding);
+
+  @include colorSchemes.dark {
+    color: white;
+  }
 }
 
 .copy {

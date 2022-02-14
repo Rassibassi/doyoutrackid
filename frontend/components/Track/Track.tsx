@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import ListenNow from "../../public/sticker_listen_now.webp";
+
 import styles from "./Track.module.scss";
 
 interface ITrackProps {
@@ -28,8 +30,8 @@ const Track = ({
   return (
     <div className={rootStyles.join(" ")}>
       <p className={styles.time}>{time}</p>
-      <h3 className={styles.title}>{title}</h3>
-      <h4 className={styles.artist}>{artist}</h4>
+      <h1 className={styles.title}>{title}</h1>
+      <h2 className={styles.artist}>{artist}</h2>
       <p className={styles.album}>
         Album: <span className={styles.value}>{album}</span>
       </p>
@@ -47,10 +49,10 @@ const Track = ({
       >
         <Image
           className={styles.stickerImg}
-          src="v1640336995/doyoutrackid/sticker_listen_now_iqgl4g.png"
           height="81"
           width="100"
-          alt="Banana sticker"
+          src={ListenNow}
+          alt="List now sticker"
         />
         <span className={styles.linkText}>Listen</span>
       </a>
