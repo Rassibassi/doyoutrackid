@@ -5,6 +5,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          {/* Preloading font from font-face in global.scss to prevent FOUT */}
           <link
             rel="preload"
             href="/ArialNarrow.woff2"
@@ -12,6 +13,7 @@ class MyDocument extends Document {
             type="font/woff2"
             crossOrigin=""
           />
+          {/* TODO(jack.matthews): make SVG */}
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>

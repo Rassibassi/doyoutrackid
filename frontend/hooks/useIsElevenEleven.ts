@@ -20,8 +20,9 @@ export function useIsElevenEleven(): [
     }
 
     let millsTill1111 = getTime(ELEVEN_ELEVEN_INTERVAL.start) - getTime(TODAY);
+    // If past 11:11 today, start at 11:11 tomorrow
     if (millsTill1111 < 0) {
-      millsTill1111 += 86400000;
+      millsTill1111 += 86400000; // 24h in ms
     }
     const startTimeout = setTimeout(handleStart, millsTill1111);
 
@@ -34,8 +35,9 @@ export function useIsElevenEleven(): [
     }
 
     let millsTill1212 = getTime(ELEVEN_ELEVEN_INTERVAL.end) - getTime(TODAY);
+    // If past 11:12 today, end at 11:12 tomorrow
     if (millsTill1212 < 0) {
-      millsTill1212 += 86400000;
+      millsTill1212 += 86400000; // 24h in ms
     }
     const endTimeout = setTimeout(handleEnd, millsTill1212);
 
