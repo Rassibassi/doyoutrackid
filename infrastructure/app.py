@@ -13,7 +13,7 @@ class DynamoApp(cdk.Stack):
             self,
             "AppTable",
             partition_key=dynamodb.Attribute(
-                name="song_link", type=dynamodb.AttributeType.STRING
+                name="played_date", type=dynamodb.AttributeType.STRING
             ),
             sort_key=dynamodb.Attribute(
                 name="played_datetime", type=dynamodb.AttributeType.STRING
@@ -21,11 +21,11 @@ class DynamoApp(cdk.Stack):
             removal_policy=cdk.RemovalPolicy.DESTROY,
         )
 
-        cdk.CfnOutput(self, "DoYouTable", value=dynamodb_table.table_name)
+        cdk.CfnOutput(self, "DoYouTable-v2", value=dynamodb_table.table_name)
         return dynamodb_table
 
 
 app = cdk.App()
-DynamoApp(app, "DoYouDatabase")
+DynamoApp(app, "DoYouDatabase-v2")
 
 app.synth()

@@ -2,19 +2,8 @@
   "version": "2.0",
   "app_name": "doyoutrackid",
   "environment_variables": {
-    "STREAM_URL": "...",
-    "STREAM_URL_NTS": "...",
-    "AUDD_API_KEY": "...",
-    "AUDD_URL": "...",
-    "FRONTEND_ORIGIN": "...",
-    "DYNAMODB_TABLE": "..."
-  },
-  "layers": ["arn:aws:lambda:{REGION}:{IAM_ID}:layer:ffmpeg:2"],
-  "lambda_functions": {
-    "use_ffmpeg": {
-      "lambda_timeout": 120,
-      "lambda_memory_size": 128
-    }
+    "DYNAMODB_TABLE": "...",
+    "AUDD_CALLBACK_SECRET": "..."
   },
   "stages": {
     "dev": {
