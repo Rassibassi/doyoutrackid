@@ -181,11 +181,7 @@ def audd_callback():
             item.update(new_track)
             table.put_item(Item=item)
 
-            return {
-                "message": "added new track",
-                "today": tracks_of_today,
-                "new_track": new_track,
-            }
+            return {"message": "added new track"}
     else:
         error = response["notification"]["notification_message"]
         app.log.debug(error)
