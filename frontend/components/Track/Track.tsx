@@ -50,6 +50,7 @@ const Track = ({
         <Image
           className={styles.stickerImg}
           height="81"
+          priority={true}
           width="100"
           src={ListenNow}
           alt="List now sticker"
