@@ -23,11 +23,11 @@ const Tracks = ({ className }: ITracksProps) => {
   const apiRoute = isToday ? "/today" : `/archive/${activeAPIDate}`;
 
   // Will be provided with initial value from server (NextPages)
-  // Don't refetch data unless today
-  // Other track data handled server-side
+  // Refetch on mount - incase received out of date cached NextJS HTML / JSON
+  // Only revalidate more than once if today. Other days will have static data
   const { tracks, isLoading } = useAPI(apiRoute, {
     focusThrottleInterval: 60000,
-    revalidateIfStale: isToday,
+    revalidateIfStale: true,
     revalidateOnFocus: isToday,
     revalidateOnReconnect: isToday,
   });
