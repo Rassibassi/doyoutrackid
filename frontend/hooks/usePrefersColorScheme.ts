@@ -19,6 +19,7 @@ export function usePrefersColorScheme() {
   const [preferredColorSchema, setPreferredColorSchema] =
     useState<COLOR_SCHEME>(COLOR_SCHEME.noPreference);
 
+  // Initial getting of preferred color scheme
   useEffect(() => {
     const isDark = getDarkQuery()?.matches;
     const isLight = getLightQuery()?.matches;
@@ -27,6 +28,7 @@ export function usePrefersColorScheme() {
     else setPreferredColorSchema(COLOR_SCHEME.noPreference);
   }, []);
 
+  // Listening for changes to preferred color scheme
   useEffect(() => {
     const darkQuery = getDarkQuery();
     const lightQuery = getLightQuery();

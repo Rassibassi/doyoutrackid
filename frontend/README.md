@@ -35,7 +35,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## SSG, SSR and ISR
 
-Efforts have been made to prevent redundant calls to our BE tracks DB e.g. for track list in the past which will never update.
+Efforts have been made to prevent redundant calls to our tracks API e.g. for track list in the past which will never update.
 
 ### `pages/tracks/`
 
@@ -80,3 +80,20 @@ When SSR'ing, if malformed params will return 404 and not revalidate.
 When SSR'ing, if date in future of date of request, will return 404 but will revalidate as one day that future day will be in the past.
 
 When SSR'ing, if date between the date of last build and before the date of request will fetch data server-side once, cache HTML and JSON and not revalidate.
+
+## Fonts and FOUT
+
+In order to prevent Flash Of Un-styled Text, font-faces declared in SCSS files also have their src `preloaded` in `_document` and `font-display: optional`. On slow connections and fallback will be shown if the font doesn't load in time and on the next navigation / refresh the correct font will be shown.
+
+Stack overflow answer [here](https://stackoverflow.com/questions/60841540/flash-of-unstyled-text-fout-on-reload-using-next-js-and-styled-components/70435013#70435013).
+
+## 11:11
+
+- created hook to trigger mode
+
+## Color scheme
+
+- created hook to get color scheme from browser / OS
+- light and dark schemes
+- styling for each theme done at component level using colorScheme mixin
+- sections of page can be set to 'dark' with `data-color-scheme="dark"` on a parent HTML element

@@ -61,8 +61,8 @@ export const getStaticProps: GetStaticProps<ITracksPageProps> = async ({
   }
 
   // Future dates should return 404
-  // But soon future dates will be 'past'
-  // so should revalidate
+  // But, at some point, 'future' dates will be 'past' dates
+  // So these 'future' dates should continue to revalidate
   if (isAfter(requestedDate, todayDate)) {
     return {
       notFound: true,
@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps<ITracksPageProps> = async ({
       },
       dateISO: dateParams[0],
     },
-    // If requested date is in the past, send the above data but don't revalidate
+    // If requested date is in the past (isBefore === true), send the above data but don't revalidate
     // as track data will never change
     revalidate: isBefore(requestedDate, todayDate) ? false : 60,
   };

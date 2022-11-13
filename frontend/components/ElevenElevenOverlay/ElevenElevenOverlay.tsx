@@ -5,7 +5,7 @@ import { ElevenEleven } from "../../contexts/elevenEleven";
 import styles from "./ElevenElevenOverlay.module.scss";
 
 const VIDEO_SRC =
-  "https://res.cloudinary.com/dmqr7syhe/video/upload/q_auto/v1641607661/doyoutrackid/darude_sandstorm_orypvq.mp4";
+  "https://res.cloudinary.com/dmqr7syhe/video/upload/q_50/v1641607661/doyoutrackid/darude_sandstorm_20s_ufitbj.mp4";
 
 const ElevenElevenOverlay = ({ className }: { className?: string }) => {
   const { setIsElevenEleven } = useContext(ElevenEleven);

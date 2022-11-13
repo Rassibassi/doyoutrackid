@@ -26,6 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
+        {/* Set background color on mobile / PWA depending on color scheme */}
         <meta
           name="theme-color"
           content={preferredColorScheme === COLOR_SCHEME.dark ? "#000" : "#FFF"}

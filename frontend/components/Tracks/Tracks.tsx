@@ -23,11 +23,11 @@ const Tracks = ({ className }: ITracksProps) => {
   const apiRoute = isToday ? "/today" : `/archive/${activeAPIDate}`;
 
   // Will be provided with initial value from server (NextPages)
-  // Don't refetch data unless today
-  // Other track data handled server-side
+  // Refetch on mount - incase received out of date cached NextJS HTML / JSON
+  // Only revalidate more than once if today. Other days will have static data
   const { tracks, isLoading } = useAPI(apiRoute, {
     focusThrottleInterval: 60000,
-    revalidateIfStale: isToday,
+    revalidateIfStale: true,
     revalidateOnFocus: isToday,
     revalidateOnReconnect: isToday,
   });
@@ -50,37 +50,44 @@ const Tracks = ({ className }: ITracksProps) => {
               release_date,
             },
             i
-          ) => (
-            <li key={i} className={styles.listItem}>
-              <Track
-                album={album}
-                artist={artist}
-                label={label}
-                listenHref={song_link}
-                releaseDate={
-                  release_date
-                    ? format(parseISO(release_date.split(" ")[0]), "dd/LL/yyyy")
-                    : "Unknown"
-                }
-                time={format(parseISO(played_datetime), "HH:mm")}
-                title={title}
-              />
-              {tracks[i + 1] &&
-                isElevenElevenBetween(
-                  parseISO(tracks[i + 1].played_datetime),
-                  parseISO(played_datetime)
-                ) && (
-                  <p className={styles.elevenEleven}>
-                    <span
-                      className={styles.btn}
-                      onClick={() => setIsElevenEleven(true)}
-                    >
-                      11:11
-                    </span>
-                  </p>
-                )}
-            </li>
-          )
+          ) => {
+            let formattedReleaseDate;
+            try {
+              formattedReleaseDate = format(
+                parseISO(release_date.split(" ")[0]),
+                "dd/LL/yyyy"
+              );
+            } catch {
+              formattedReleaseDate = "Unknown";
+            }
+            return (
+              <li key={i} className={styles.listItem}>
+                <Track
+                  album={album}
+                  artist={artist}
+                  label={label}
+                  listenHref={song_link}
+                  releaseDate={formattedReleaseDate}
+                  time={format(parseISO(played_datetime), "HH:mm")}
+                  title={title}
+                />
+                {tracks[i + 1] &&
+                  isElevenElevenBetween(
+                    parseISO(tracks[i + 1].played_datetime),
+                    parseISO(played_datetime)
+                  ) && (
+                    <p className={styles.elevenEleven}>
+                      <span
+                        className={styles.btn}
+                        onClick={() => setIsElevenEleven(true)}
+                      >
+                        11:11
+                      </span>
+                    </p>
+                  )}
+              </li>
+            );
+          }
         )
       ) : (
         <li className={styles.listItem}>
