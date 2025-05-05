@@ -20,6 +20,8 @@
 
 .navInner {
   position: fixed;
+  max-height: 85%;
+  overflow-y: scroll;
 }
 
 .bananaDates {
