@@ -1,0 +1,5 @@
+# local tooling only; not packaged into the Lambda
+-r requirements.txt
+chalice==1.33.0
+boto3
+pytest
