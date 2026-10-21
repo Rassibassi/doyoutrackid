@@ -37,7 +37,8 @@ audd_datetime_format = "%Y-%m-%d %H:%M:%S"
 clean_string = partial(re.sub, re.compile(r"\([^)]*\)|\[[^)]*\]|[^a-zA-Z0-9\s]"), "")
 
 london_tz = pytz.timezone("Europe/London")
-audd_tz = pytz.timezone("Etc/GMT-3")
+# AudD sent UTC+3 timestamps until 2026-10-12 16:26 UTC, UTC since then
+audd_tz = pytz.utc
 
 
 # helper functions
